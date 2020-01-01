@@ -364,6 +364,7 @@ a, button, input {
 
 /** 顶部导航 **/
 #top-header {
+    background: #F5F8F9 !important;
     border-bottom: 1px solid #dedede;
 }
 
@@ -381,7 +382,7 @@ a, button, input {
 
 .top-menu li {
     float: left;
-    /*padding: 0 5px;*/
+    padding: 0 5px;
 }
 
 .top-menu a {

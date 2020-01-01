@@ -13,6 +13,7 @@
         <module>resourcesBase_service</module>
         <module>resourcesBase_web</module>
         <module>resourcesBase_dao</module>
+        <module>resourcesBase_Util</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -114,6 +115,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.7.2</version>
         </dependency>
         <!--log End-->
     </dependencies>

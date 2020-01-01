@@ -24,9 +24,26 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--过滤静态资源-->
-    <mvc:resources location="StaticResources/css/" mapping="/css/**" />
-    <mvc:resources location="StaticResources/images/" mapping="/images/**" />
-    <mvc:resources location="StaticResources/js/" mapping="/js/**" />
+    <!--放行静态资源-->
+    <mvc:default-servlet-handler/>
+    <!--<mvc:resources location="/static/css/" mapping="/css/**" />-->
+    <!--<mvc:resources location="/static/images/" mapping="/images/**" />-->
+    <!--<mvc:resources location="/static/js/" mapping="/js/**" />-->
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.easondongh.interceptor.HomeResourcesInterceptor"/>
+        </mvc:interceptor>
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/admin"/>-->
+            <!--<bean class="com.liuyanzhao.ssm.blog.interceptor.SecurityInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/admin/**"/>-->
+            <!--<bean class="com.liuyanzhao.ssm.blog.interceptor.SecurityInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+
+    </mvc:interceptors>
 
 </beans>
