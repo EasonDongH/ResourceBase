@@ -16,7 +16,7 @@
             <div class="feed-about">
                 <div class="about-main">
                     <div class="about-img">
-                        <img src="/getAuthorPhoto" alt="QR Code">
+                        <img src="/image/authorPhoto" alt="QR Code">
                     </div>
                     <div class="about-name">${options.siteAuthorName}</div>
                     <div class="about-the">
