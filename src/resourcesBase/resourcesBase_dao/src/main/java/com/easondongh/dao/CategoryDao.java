@@ -13,4 +13,19 @@ public interface CategoryDao {
      */
     @Select("select * from category order by categoryOrder desc")
     List<Category> listWithDescOrder();
+
+    /**
+     * 根据id获取category
+     * @param id
+     * @return
+     */
+    @Select("select * from category where id = #{id}")
+    Category getCategoryById(Integer id);
+
+    /**
+     * 统计分类数量
+     * @return
+     */
+    @Select("select count(*) from category")
+    int countCategory();
 }

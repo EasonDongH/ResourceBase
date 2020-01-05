@@ -18,4 +18,55 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> listAll() {
         return this.articleDao.listAll();
     }
+
+    @Override
+    public Article getArticleById(Integer id) {
+        return this.articleDao.getArticleById(id);
+    }
+
+    @Override
+    public List<Article> getArticleListByCid(Integer cid) {
+        return this.articleDao.getArticleListByCid(cid);
+    }
+
+    @Override
+    public synchronized Integer getArticleLikeCountById(Integer id) {
+        return this.articleDao.getArticleLikeCountById(id);
+    }
+
+    @Override
+    public boolean updateArticleLikeCountById(Integer id, Integer curLikeCnt) {
+        Integer result = this.articleDao.updateArticleLikeCountById(id,curLikeCnt);
+        return result > 0;
+    }
+
+    @Override
+    public Integer getArticleViewCountById(Integer id) {
+        return this.articleDao.getArticleViewCountById(id);
+    }
+
+    @Override
+    public boolean updateArticleViewCountById(Integer id, Integer curViewCnt) {
+        return this.articleDao.updateArticleViewCountById(id,curViewCnt) > 0;
+    }
+
+    @Override
+    public int countArticles() {
+        return this.articleDao.countArticles();
+    }
+
+    @Override
+    public int countArticleComments() {
+        return this.articleDao.countArticleComments();
+    }
+
+    @Override
+    public int countArticleViews() {
+        return this.articleDao.countArticleViews();
+    }
+
+    @Override
+    public List<Article> getMostCommentArticleList() {
+        return this.articleDao.getMostCommentArticleList();
+    }
 }

@@ -15,6 +15,8 @@ public class Article implements Serializable {
 
     private String articleContent;
 
+    private String articleSummary;
+
     private Date articleCreateTime;
 
     private Date articleUpdateTime;
@@ -34,7 +36,10 @@ public class Article implements Serializable {
      */
     private Integer articleLikeCount;
 
-    private List<Category> categoryList;
-
     private Integer articleOrder;
+
+    /**
+     * 文章分类
+     */
+    private Category category;
 }

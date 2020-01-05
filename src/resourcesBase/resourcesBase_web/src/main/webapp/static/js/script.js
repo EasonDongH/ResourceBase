@@ -292,58 +292,40 @@ $("#cancel-comment-reply-link").click(function () {
 
 //文章浏览量+1
 function increaseViewCount(articleId) {
-    if ($.cookie("viewId") != articleId || $.cookie("viewId") == null) {
         $.ajax({
-            async: false,
+            async: true,
             type: "POST",
             url: "/article/view/" + articleId,
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                console.log(data);
-                $(".articleViewCount").html(data);
-                $.cookie(
-                    "viewId",
-                    articleId,//需要cookie写入的业务
-                    {
-                        "path": "/", //cookie的默认属性
-                    }
-                );
+                if (data.flag) {
+                    $(".articleViewCount").html(data.data);
+                }
             },
             error: function () {
-                alert("获取数据出错!");
-            },
+                // alert("获取数据出错!");
+            }
         });
-    }
 }
-
-
 //点赞+1
-function increaseLikeCount() {
-    if ($.cookie("likeId") != articleId || $.cookie("likeId") == null) {
-        $.ajax({
-            async: false,
-            type: "POST",
-            url: "/article/like/" + articleId,
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (data) {
-                $(".count").html(data);
-                $.cookie(
-                    "likeId",
-                    articleId,//需要cookie写入的业务
-                    {
-                        "path": "/", //cookie的默认属性
-                    }
-                );
-            },
-            error: function () {
-                //alert("获取数据出错!");
-            },
-        });
-    }
+function increaseLikeCount(articleId) {
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/article/like/" + articleId,
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+            if (data.flag) {
+                $(".count").html(data.data);
+            }
+        },
+        error: function () {
+            //alert("获取数据出错!");
+        }
+    })
 }
-
 
 //ajax提交评论信息
 $("#comment_form").submit(function () {

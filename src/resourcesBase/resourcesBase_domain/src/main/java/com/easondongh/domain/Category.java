@@ -19,9 +19,13 @@ public class Category implements Serializable {
     private String categoryDescription;
 
     /**
-     * 排序字段
+     * 排序字段：这里是分类递归层次
      */
     private Integer categoryOrder;
 
     private String categoryIcon;
+
+    public static boolean isRoot(Category category){
+        return category != null && category.getPid() == 0;
+    }
 }

@@ -5,22 +5,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 
+<rapid:override name="description">
+    <meta name="description" content="${category.categoryName}"/>
+</rapid:override>
+<rapid:override name="keywords">
+    <meta name="keywords" content="${category.categoryName}"/>
+</rapid:override>
+<rapid:override name="title">
+    <title>${category.categoryName}</title>
+</rapid:override>
+
+<%--面包屑导航 start--%>
 <rapid:override name="breadcrumb">
     <nav class="breadcrumb">
-        <div class="bull"><i class="fa fa-volume-up"></i></div>
-        <div id="scrolldiv">
-            <div class="scrolltext">
-                <ul style="margin-top: 0px;">
-                    <c:forEach items="${noticeList}" var="n">
-                        <li class="scrolltext-title">
-                            <a href="/notice/${n.id}" rel="bookmark">${n.noticeTitle}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
+        <a class="crumbs" href="/">
+            <i class="fa fa-home"></i>首页</a>
+        <i class="fa fa-angle-right"></i>
+        <c:choose>
+            <c:when test="${category != null}">
+                <a href="/category/${category.id}">${category.categoryName}</a>
+                <i class="fa fa-angle-right"></i> 文章
+            </c:when>
+            <c:otherwise>
+                该分类不存在
+            </c:otherwise>
+        </c:choose>
     </nav>
 </rapid:override>
+<%--面包屑导航 end--%>
 
 <%--主体内容 start--%>
 <rapid:override name="left">
@@ -37,15 +49,14 @@
                         <div class="archive-content">${a.articleSummary}...<br><br></div>
                         <span class="title-l"></span>
                         <span class="new-icon">
-                                    <jsp:useBean id="nowDate" class="java.util.Date"/>
-                                    <c:set var="interval" value="${nowDate.time - a.articleCreateTime.time}"/><%--时间差毫秒数--%>
-                                    <fmt:formatNumber value="${interval/1000/60/60/24}" pattern="#0" var="days"/>
-                                    <c:if test="${days <= 7}">NEW</c:if>
+                            <jsp:useBean id="nowDate" class="java.util.Date"/>
+                            <c:set var="interval" value="${nowDate.time - a.articleCreateTime.time}"/><%--时间差毫秒数--%>
+                            <fmt:formatNumber value="${interval/1000/60/60/24}" pattern="#0" var="days"/>
+                            <c:if test="${days <= 7}">NEW</c:if>
                         </span>
                         <span class="entry-meta">
                             <span class="date">
-                                <fmt:formatDate value="${a.articleCreateTime}" pattern="yyyy年MM月dd日"/>
-                            &nbsp;&nbsp;
+                                <fmt:formatDate value="${a.articleCreateTime}" pattern="yyyy年MM月dd日"/>&nbsp;&nbsp;
                             </span>
                             <span class="views">
                                 <i class="fa fa-eye"></i>
@@ -67,7 +78,6 @@
                         </span>
                         <div class="clear"></div>
                     </div><!-- .entry-content -->
-
                     <span class="entry-more">
                         <a href="/article/${a.id}" rel="bookmark" target="_blank">阅读全文</a>
                     </span>
@@ -84,5 +94,4 @@
 </rapid:override>
 <%--侧边栏 end--%>
 
-<%--指定父页--%>
 <%@ include file="framework.jsp" %>

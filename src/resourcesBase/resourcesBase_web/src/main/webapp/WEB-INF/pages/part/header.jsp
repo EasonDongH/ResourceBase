@@ -78,8 +78,7 @@
                                             <c:forEach items="${categoryList}" var="cate">
                                                 <c:if test="${cate.pid==category.id}">
                                                     <li>
-                                                        <a href="/category/${cate.id}"
-                                                           target="_blank">${cate.categoryName}</a>
+                                                        <a href="/category/${cate.id}">${cate.categoryName}</a>
                                                     </li>
                                                 </c:if>
                                             </c:forEach>
