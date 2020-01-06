@@ -3,10 +3,8 @@ package com.easondongh.controller;
 import com.easondongh.domain.Article;
 import com.easondongh.domain.Notice;
 import com.easondongh.domain.Options;
-import com.easondongh.service.ArticleService;
-import com.easondongh.service.CategoryService;
-import com.easondongh.service.NoticeService;
-import com.easondongh.service.OptionsService;
+import com.easondongh.domain.SlideshowContent;
+import com.easondongh.service.*;
 
 import com.easondongh.util.SiteInfoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +29,17 @@ public class IndexController {
     private ArticleService articleService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private SlideshowContentService slideshowContentService;
 
     @RequestMapping("/")
     public String index(Model model) throws ParseException {
         // 注意通知
         List<Notice> noticeList = this.noticeService.listNotices();
         model.addAttribute("noticeList", noticeList);
+        // 轮播图
+        List<SlideshowContent> slideshowContents = this.slideshowContentService.listByStatus(SlideshowContent.USE);
+        model.addAttribute("slideshowContents", slideshowContents);
         // 文章内容
         List<Article> articleList = this.articleService.listAll();
         model.addAttribute("articleList",articleList);

@@ -17,20 +17,27 @@
 
 <%--面包屑导航 start--%>
 <rapid:override name="breadcrumb">
+    <%--面包屑导航 start--%>
     <nav class="breadcrumb">
         <a class="crumbs" href="/">
-            <i class="fa fa-home"></i>首页</a>
-        <i class="fa fa-angle-right"></i>
+            <i class="fa fa-home"></i>首页
+        </a>
         <c:choose>
-            <c:when test="${category != null}">
-                <a href="/category/${category.id}">${category.categoryName}</a>
-                <i class="fa fa-angle-right"></i> 文章
+            <c:when test="${parentNodes != null && parentNodes.size() > 0}">
+                <c:forEach items="${parentNodes}" var="c">
+                    <i class="fa fa-angle-right"></i>
+                    <a href="/category/${c.id}">${c.categoryName}</a>
+                </c:forEach>
             </c:when>
             <c:otherwise>
-                该分类不存在
+                <i class="fa fa-angle-right"></i>
+                <a>未分类</a>
             </c:otherwise>
         </c:choose>
+        <i class="fa fa-angle-right"></i>
+        正文
     </nav>
+    <%--面包屑导航 end--%>
 </rapid:override>
 <%--面包屑导航 end--%>
 

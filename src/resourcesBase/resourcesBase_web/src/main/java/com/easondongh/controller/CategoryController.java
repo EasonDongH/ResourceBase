@@ -27,6 +27,8 @@ public class CategoryController {
         model.addAttribute("articleList", articleList);
         Category category = this.categoryService.getCategoryById(cid);
         model.addAttribute("category", category);
+        List<Category> parentNodes = this.categoryService.getParentNodeById(category);
+        model.addAttribute("parentNodes", parentNodes);
         return "articleListByCategory";
     }
 }

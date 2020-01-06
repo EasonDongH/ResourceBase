@@ -26,6 +26,21 @@
 <rapid:override name="left">
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
+            <!-- 轮播图 start -->
+            <div id="slideshow" class="wow fadeInUp" data-wow-delay="0.3s">
+                <ul class="rslides callbacks" id="slider" style="max-width: 2000px;">
+                    <c:forEach items="${slideshowContents}" var="c" varStatus="index">
+                        <li id="callback_s${index.index}"
+                            style="float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 800ms ease-in-out 0s;">
+                            <a href="/article/${c.aid}" target="_blank" rel="external nofollow">
+                                <img src="/image/${c.photoId}" alt="${c.summarize}" style="height: 300px;">
+                            </a>
+                            <p class="slider-caption">${c.summarize}</p>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
+            <!-- 轮播图 end -->
             <c:forEach items="${articleList}" var="a">
                 <article class="post type-post">
                     <header class="entry-header">
@@ -83,6 +98,14 @@
     <%@include file="part/sidebar-2.jsp" %>
 </rapid:override>
 <%--侧边栏 end--%>
+
+<rapid:override name="footer-script">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#scrolldiv").textSlider({line: 1, speed: 300, timer: 3000});
+        });
+    </script>
+</rapid:override>
 
 <%--指定父页--%>
 <%@ include file="framework.jsp" %>

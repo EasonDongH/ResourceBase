@@ -465,7 +465,7 @@
 <%--侧边栏 end--%>
 
 <rapid:override name="footer-script">
-    <script src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             if ($('#author_name').val() == '') {

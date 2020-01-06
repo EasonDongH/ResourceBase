@@ -50,7 +50,9 @@
 <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/superfish.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/sticky.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/slides.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/jquery.cookie.js"></script>
 <script src="${pageContext.request.contextPath}/static/plugin/layui/layui.all.js"></script>
 
 <rapid:block name="footer-script"></rapid:block>
