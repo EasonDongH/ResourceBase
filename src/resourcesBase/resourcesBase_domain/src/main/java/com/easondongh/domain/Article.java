@@ -42,4 +42,9 @@ public class Article implements Serializable {
      * 文章分类
      */
     private Category category;
+
+    /**
+     * 文章标签
+     */
+    private List<Tag> tagList;
 }

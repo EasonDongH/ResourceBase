@@ -182,26 +182,26 @@ $("#scrolldiv").textSlider({line: 1, speed: 300, timer: 6000});
             + "    <i class=\"ds-close-dialog\">&times;</i>"
             + "    <h5>选择打赏方式：</h5>"
             + "    <div class=\"ds-payment-way\">"
-            + "     <label for=\"wechat\"><input type=\"radio\" id=\"wechat\" class=\"reward-radio\" value=\"0\" checked=\"checked\" name=\"reward-way\" />微信红包</label>"
-            + "     <label for=\"qqqb\"><input type=\"radio\" id=\"qqqb\" class=\"reward-radio\" value=\"1\" name=\"reward-way\" />QQ钱包</label>"
-            + "     <label for=\"alipay\"><input type=\"radio\" id=\"alipay\" class=\"reward-radio\" value=\"2\" name=\"reward-way\" />支付宝</label>"
+            + "     <label for=\"alipay\"><input type=\"radio\" id=\"alipay\" class=\"reward-radio\" value=\"0\" checked=\"checked\" name=\"reward-way\" />支付宝</label>"
+            + "     <label for=\"wechat\"><input type=\"radio\" id=\"wechat\" class=\"reward-radio\" value=\"1\"  name=\"reward-way\" />微信支付</label>"
+            + "     <label for=\"qqqb\"><input type=\"radio\" id=\"qqqb\" class=\"reward-radio\" value=\"2\" name=\"reward-way\" />QQ钱包</label>"
             + "    </div>"
             + "    <div class=\"ds-payment-img\">"
             + "     <div class=\"qrcode-img qrCode_0\" id=\"qrCode_0\">"
-            + "      <div class=\"qrcode-border box-size\" style=\"border: 9.02px solid rgb(60, 175, 54\">"
-            + "       <img  class=\"qrcode-img qrCode_0\" id=\"qrCode_0\" src='/img/shang/weixinpay.jpg'  />"
+            + "      <div class=\"qrcode-border box-size\" style=\"border: 9.02px solid rgb(235, 95, 1\">"
+            + "       <img  class=\"qrcode-img qrCode_0\" id=\"qrCode_0\"  src=\"/static/images/shang/alipay.jpg\"  />"
             + "      </div>"
             + "      <p class=\"qrcode-tip\">打赏</p>"
             + "     </div>"
             + "     <div class=\"qrcode-img qrCode_1\" id=\"qrCode_1\">"
-            + "      <div class=\"qrcode-border box-size\" style=\"border: 9.02px solid rgb(102, 153, 204\">"
-            + "       <img  class=\"qrcode-img qrCode_1\" id=\"qrCode_1\"  src=\"/img/shang/qqpay.jpg\"  />"
+            + "      <div class=\"qrcode-border box-size\" style=\"border: 9.02px solid rgb(60, 175, 54\">"
+            + "       <img  class=\"qrcode-img qrCode_1\" id=\"qrCode_1\" src='/static/images/shang/weixinpay.png'  />"
             + "      </div>"
             + "      <p class=\"qrcode-tip\">打赏</p>"
             + "     </div>"
             + "     <div class=\"qrcode-img qrCode_2\" id=\"qrCode_2\">"
-            + "      <div class=\"qrcode-border box-size\" style=\"border: 9.02px solid rgb(235, 95, 1\">"
-            + "       <img  class=\"qrcode-img qrCode_2\" id=\"qrCode_2\"  src=\"/img/shang/alipay.jpg\"  />"
+            + "      <div class=\"qrcode-border box-size\" style=\"border: 9.02px solid rgb(102, 153, 204\">"
+            + "       <img  class=\"qrcode-img qrCode_2\" id=\"qrCode_2\"  src=\"/static/images/shang/qqpay.png\"  />"
             + "      </div>"
             + "      <p class=\"qrcode-tip\">打赏</p>"
             + "     </div>"
@@ -231,7 +231,6 @@ $("#scrolldiv").textSlider({line: 1, speed: 300, timer: 6000});
         $("#PAY_" + id).hide();
     }
 })(jQuery);
-
 
 function confirmDelete() {
     var msg = "您确定要删除吗？";

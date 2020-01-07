@@ -30,12 +30,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public synchronized Integer getArticleLikeCountById(Integer id) {
+    public Integer getArticleLikeCountById(Integer id) {
         return this.articleDao.getArticleLikeCountById(id);
     }
 
     @Override
-    public boolean updateArticleLikeCountById(Integer id, Integer curLikeCnt) {
+    public synchronized boolean updateArticleLikeCountById(Integer id, Integer curLikeCnt) {
         Integer result = this.articleDao.updateArticleLikeCountById(id,curLikeCnt);
         return result > 0;
     }
@@ -46,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public boolean updateArticleViewCountById(Integer id, Integer curViewCnt) {
+    public synchronized boolean updateArticleViewCountById(Integer id, Integer curViewCnt) {
         return this.articleDao.updateArticleViewCountById(id,curViewCnt) > 0;
     }
 

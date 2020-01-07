@@ -34,7 +34,8 @@ public interface ArticleDao {
             @Result(property = "articleCommentCount", column = "articleCommentCount"),
             @Result(property = "articleLikeCount", column = "articleLikeCount"),
             @Result(property = "articleOrder", column = "articleOrder"),
-            @Result(property = "category", column = "categoryId", javaType = Category.class, one = @One(select = "com.easondongh.dao.CategoryDao.getCategoryById"))
+            @Result(property = "category", column = "categoryId", javaType = Category.class, one = @One(select = "com.easondongh.dao.CategoryDao.getCategoryById")),
+            @Result(property = "tagList", column = "id", javaType = java.util.List.class, many = @Many(select = "com.easondongh.dao.TagDao.getListByAid"))
     })
     Article getArticleById(Integer id);
 

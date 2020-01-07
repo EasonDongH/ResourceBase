@@ -52,13 +52,29 @@
                 <header class="entry-header">
                     <h1 class="entry-title">${article.articleTitle}</h1>
                 </header><!-- .entry-header -->
+                <%--所属标签 start--%>
+                <div class="single-tag">
+                    <ul class="" data-wow-delay="0.3s">
+                        <c:forEach items="${article.tagList}" var="t">
+                            <li><a href="/tag/${t.id}" rel="tag" style="background:${t.tagBackground}">${t.tagName}</a></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+                <%--所属标签 end--%>
                 <div class="entry-content">
-                    <div class="single-content">${article.articleContent}</div>
+                    <div class="single-content">
+                        <p>${article.articleContent}</p>
+                    </div>
                     <div class="s-weixin">
                         <ul class="weimg1">
                             <li><strong>微信</strong></li>
-                            <li>赶快加我聊天吧</li>
-                            <li><img src="${pageContext.request.contextPath}/static/images/weixin.png"></li>
+                            <li>欢迎交流</li>
+                            <li><img src="${pageContext.request.contextPath}/static/images/weixin.png" alt="Wechat"></li>
+                        </ul>
+                        <ul class="weimg2">
+                            <li><strong>QQ</strong></li>
+                            <li>期待骚扰</li>
+                            <li><img src="${pageContext.request.contextPath}/static/images/qq.jpg" alt="QQ"></li>
                         </ul>
                         <div class="clear"></div>
                     </div>
@@ -150,22 +166,6 @@
                     <div class="clear"></div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->
-
-                <%--所属标签 start--%>
-            <%--<div class="single-tag">--%>
-                <%--<ul class="" data-wow-delay="0.3s">--%>
-                    <%--<c:forEach items="${article.tagList}" var="t">--%>
-                        <%--<li>--%>
-                            <%--<a href="/tag/${t.tagId}" rel="tag"--%>
-                               <%--style="background:#666666">--%>
-                                    <%--${t.tagName}--%>
-                            <%--</a>--%>
-                        <%--</li>--%>
-                    <%--</c:forEach>--%>
-                <%--</ul>--%>
-            <%--</div>--%>
-                <%--所属标签 end--%>
-
 
                 <%--版权声明 start--%>
             <%--<div class="authorbio wow fadeInUp">--%>
