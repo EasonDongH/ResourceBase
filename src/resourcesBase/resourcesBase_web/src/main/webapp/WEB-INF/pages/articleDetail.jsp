@@ -137,9 +137,8 @@
                                 </a>
                             </li>
                             <li class="views">
-                                <i class="fa fa-eye"></i> <span
-                                    class="articleViewCount">${article.articleViewCount}</span>
-                                views
+                                <i class="fa fa-eye"></i>
+                                <span class="articleViewCount">${article.articleViewCount}</span>views
                             </li>
                             <li class="r-hide">
                                 <a href="javascript:pr()" title="侧边栏">
@@ -153,44 +152,33 @@
                         </ul>
                         <div class="single-cat-tag">
                             <div class="single-cat">所属分类：
-                                <%--<c:forEach items="${article.categoryList}" var="c">--%>
-                                    <a href="/category/${article.category.id}">
-                                            ${article.category.categoryName}
-                                    </a>
-                                <%--</c:forEach>--%>
+                                <a href="/category/${article.category.id}">${article.category.categoryName}</a>
                             </div>
                         </div>
                     </footer><!-- .entry-footer -->
-
-
                     <div class="clear"></div>
                 </div><!-- .entry-content -->
             </article><!-- #post -->
 
-                <%--版权声明 start--%>
-            <%--<div class="authorbio wow fadeInUp">--%>
-                <%--<img alt="${article.user.userNickname}" src="${article.user.userAvatar}"--%>
-                     <%--class="avatar avatar-64 photo" height="64" width="64">--%>
-                <%--<ul class="postinfo">--%>
-                    <%--<li></li>--%>
-                    <%--<li><strong>版权声明：</strong>本站原创文章，于<fmt:formatDate--%>
-                            <%--value="${article.articleCreateTime}"--%>
-                            <%--pattern="yyyy-MM-dd"/>，由--%>
-                        <%--<strong>--%>
-                                <%--${article.user.userNickname}--%>
-                        <%--</strong>--%>
-                        <%--发表。--%>
-                    <%--</li>--%>
-                    <%--<li class="reprinted"><strong>转载请注明：</strong>--%>
-                        <%--<a href="/article/${article.articleId}"--%>
-                           <%--rel="bookmark"--%>
-                           <%--title="本文固定链接 /article/${article.articleId}">--%>
-                                <%--${article.articleTitle} | ${options.optionSiteTitle}</a>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-                <%--<div class="clear"></div>--%>
-            <%--</div>--%>
-                <%--版权声明 end--%>
+            <%--版权声明 start--%>
+            <div class="authorbio wow fadeInUp">
+                <img alt="avatar" src="/image/${article.user.avatarId}"
+                     class="avatar avatar-64 photo" height="64" width="64">
+                <ul class="postinfo">
+                    <li></li>
+                    <li><strong>版权声明：</strong>
+                        本站原创文章，于<fmt:formatDate value="${article.articleCreateTime}" pattern="yyyy-MM-dd"/>，
+                        由<strong>${article.user.nickName}</strong>发表。
+                    </li>
+                    <li class="reprinted"><strong>转载请注明：</strong>
+                        <a href="/article/${article.id}"
+                           rel="bookmark"
+                           title="本文固定链接 /article/${article.id}">${article.articleTitle} | ${options.optionSiteTitle}</a>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <%--版权声明 end--%>
 
                 <%--相关文章 start--%>
             <%--<div id="single-widget">--%>
@@ -231,51 +219,41 @@
                 <%--<div class="clear"></div>--%>
             <%--</div>--%>
                 <%--相关文章 end--%>
-
-                <%--上一篇下一篇 start--%>
-            <%--<nav class="nav-single">--%>
-                <%--<c:choose>--%>
-                    <%--<c:when test="${preArticle!=null}">--%>
-                        <%--<a href="/article/${preArticle.articleId}" rel="next">--%>
-                            <%--<span class="meta-nav">--%>
-                                <%--<span class="post-nav">上一篇--%>
-                                 <%--<i class="fa fa-angle-left"></i>--%>
-                                <%--</span>--%>
-                                <%--<br>${preArticle.articleTitle}--%>
-                            <%--</span>--%>
-                        <%--</a>--%>
-                    <%--</c:when>--%>
-                    <%--<c:otherwise>--%>
-                              <%--<span class="meta-nav">--%>
-                                    <%--<span class="post-nav">--%>
-                                        <%--没有了<br>--%>
-                                    <%--</span>已是第一篇文章--%>
-                                <%--</span>--%>
-                    <%--</c:otherwise>--%>
-                <%--</c:choose>--%>
-                <%--<c:choose>--%>
-                    <%--<c:when test="${afterArticle!=null}">--%>
-                        <%--<a href="/article/${afterArticle.articleId}" rel="next">--%>
-                            <%--<span class="meta-nav">--%>
-                                <%--<span class="post-nav">下一篇--%>
-                                 <%--<i class="fa fa-angle-right"></i>--%>
-                                <%--</span>--%>
-                                <%--<br>${afterArticle.articleTitle}--%>
-                            <%--</span>--%>
-                        <%--</a>--%>
-                    <%--</c:when>--%>
-                    <%--<c:otherwise>--%>
-                            <%--<span class="meta-nav">--%>
-                                <%--<span class="post-nav">--%>
-                                    <%--没有了<br>--%>
-                                <%--</span>已是最后文章--%>
-                             <%--</span>--%>
-                    <%--</c:otherwise>--%>
-                <%--</c:choose>--%>
-
-                <%--<div class="clear"></div>--%>
-            <%--</nav>--%>
-                <%--上一篇下一篇 end--%>
+            <%--上一篇下一篇 start--%>
+            <nav class="nav-single">
+                <c:choose>
+                    <c:when test="${preArticle!=null}">
+                        <a href="/article/${preArticle.id}" rel="next">
+                            <span class="meta-nav">
+                                <i class="fa fa-angle-left"></i><span class="post-nav">&nbsp;上一篇</span>
+                                <br>${preArticle.articleTitle}
+                            </span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <span class="meta-nav">
+                             <span class="post-nav">没有了<br></span>已是第一篇文章
+                        </span>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${nextArticle!=null}">
+                        <a href="/article/${nextArticle.id}" rel="next">
+                            <span class="meta-nav">
+                                <span class="post-nav">下一篇&nbsp;</span><i class="fa fa-angle-right"></i>
+                                <br>${nextArticle.articleTitle}
+                            </span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <span class="meta-nav">
+                            <span class="post-nav">没有了<br></span>已是最后文章
+                        </span>
+                    </c:otherwise>
+                </c:choose>
+                <div class="clear"></div>
+            </nav>
+            <%--上一篇下一篇 end--%>
 
                 <%--评论区域 start--%>
             <%--<div class="scroll-comments"></div>--%>

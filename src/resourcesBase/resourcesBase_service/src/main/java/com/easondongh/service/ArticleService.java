@@ -4,6 +4,9 @@ import com.easondongh.domain.Article;
 
 import java.util.List;
 
+/**
+ * @author EasonDongH
+ */
 public interface ArticleService {
 
     /**
@@ -79,4 +82,18 @@ public interface ArticleService {
      * @return
      */
     List<Article> getMostCommentArticleList();
+
+    /**
+     * 获取上一篇文章：上一个id
+     * @param id
+     * @return
+     */
+    Article getPreviousArticle(Integer id);
+
+    /**
+     * 获取下一篇文章：下一个id
+     * @param id
+     * @return
+     */
+    Article getNextArticle(Integer id);
 }

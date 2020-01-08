@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/**
+ * @author EasonDongH
+ */
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
@@ -34,12 +37,17 @@ public class ArticleController {
     @RequestMapping("/{articleId}")
     public String getArticleById(@PathVariable("articleId") Integer id, Model model){
         Article article = this.articleService.getArticleById(id);
-        if(article == null) {// 对无效查询响应主页面
+        // 对无效查询响应主页面
+        if(article == null) {
             return "index";
         }
         List<Category> parentNodes = this.categoryService.getParentNodeById(article.getCategory());
         model.addAttribute("article", article);
         model.addAttribute("parentNodes", parentNodes);
+        Article preArticle = this.articleService.getPreviousArticle(article.getId());
+        model.addAttribute("preArticle",preArticle);
+        Article nextArticle = this.articleService.getNextArticle(article.getId());
+        model.addAttribute("nextArticle",nextArticle);
         return "articleDetail";
     }
 

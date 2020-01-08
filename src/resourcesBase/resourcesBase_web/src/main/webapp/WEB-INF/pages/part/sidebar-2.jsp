@@ -35,7 +35,7 @@
                     </li>
                     <li class="tqq">
                         <a target="blank" rel="external nofollow"
-                           href="http://wpa.qq.com/msgrd?V=3&amp;uin=${options.siteAuthorQQ}&amp;Site=QQ&amp;Menu=yes"
+                           href="http://wpa.qq.com/msgrd?V=3&amp;uin=${options.siteAuthorQq}&amp;Site=QQ&amp;Menu=yes"
                            title="QQ在线">
                             <i class="fa fa-qq"></i>
                         </a>

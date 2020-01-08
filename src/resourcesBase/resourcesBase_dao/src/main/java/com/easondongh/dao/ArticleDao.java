@@ -2,10 +2,14 @@ package com.easondongh.dao;
 
 import com.easondongh.domain.Article;
 import com.easondongh.domain.Category;
+import com.easondongh.domain.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @author EasonDongH
+ */
 public interface ArticleDao {
 
     /**
@@ -13,7 +17,7 @@ public interface ArticleDao {
      *
      * @return
      */
-    @Select("select * from article")
+    @Select("select * from article where status = 1")
     List<Article> listAll();
 
     /**
@@ -22,7 +26,7 @@ public interface ArticleDao {
      * @param id
      * @return
      */
-    @Select("select * from article where id = #{id}")
+    @Select("select * from article where id = #{id} and status = 1")
     @Results(id = "articleMap", value = {
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "articleTitle", column = "articleTitle"),
@@ -35,7 +39,8 @@ public interface ArticleDao {
             @Result(property = "articleLikeCount", column = "articleLikeCount"),
             @Result(property = "articleOrder", column = "articleOrder"),
             @Result(property = "category", column = "categoryId", javaType = Category.class, one = @One(select = "com.easondongh.dao.CategoryDao.getCategoryById")),
-            @Result(property = "tagList", column = "id", javaType = java.util.List.class, many = @Many(select = "com.easondongh.dao.TagDao.getListByAid"))
+            @Result(property = "tagList", column = "id", javaType = java.util.List.class, many = @Many(select = "com.easondongh.dao.TagDao.getListByAid")),
+            @Result(property = "user", column = "userId", javaType = User.class, one = @One(select = "com.easondongh.dao.UserDao.getById"))
     })
     Article getArticleById(Integer id);
 
@@ -44,7 +49,7 @@ public interface ArticleDao {
      * @param cid
      * @return
      */
-    @Select("select * from article where categoryId = #{cid}")
+    @Select("select * from article where status = 1 and categoryId = #{cid}")
     List<Article> getArticleListByCid(Integer cid);
 
     /**
@@ -108,6 +113,24 @@ public interface ArticleDao {
      * 获取前10热评文章
      * @return
      */
-    @Select("select* from article order by articleCommentCount desc limit 10")
+    @Select("select * from article where status = 1 order by articleCommentCount desc limit 10")
     List<Article> getMostCommentArticleList();
+
+    /**
+     * 获取上一篇文章：上一个id
+     * @param id
+     * @return
+     */
+    @Select("select * from article where status = 1 and id < #{id} order by id limit 1")
+    @ResultMap(value = "articleMap")
+    Article getPreviousArticle(Integer id);
+
+    /**
+     * 获取下一篇文章：下一个id
+     * @param id
+     * @return
+     */
+    @Select("select * from article where status = 1 and id > #{id} order by id limit 1")
+    @ResultMap(value = "articleMap")
+    Article getNextArticle(Integer id);
 }

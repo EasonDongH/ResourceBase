@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author EasonDongH
+ */
 @Data
 public class Article implements Serializable {
 
@@ -47,4 +50,8 @@ public class Article implements Serializable {
      * 文章标签
      */
     private List<Tag> tagList;
+
+    private int userId;
+
+    private User user;
 }

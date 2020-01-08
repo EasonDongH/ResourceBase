@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author EasonDongH
+ */
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
@@ -68,5 +71,15 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getMostCommentArticleList() {
         return this.articleDao.getMostCommentArticleList();
+    }
+
+    @Override
+    public Article getPreviousArticle(Integer id) {
+        return this.articleDao.getPreviousArticle(id);
+    }
+
+    @Override
+    public Article getNextArticle(Integer id) {
+        return this.articleDao.getNextArticle(id);
     }
 }
