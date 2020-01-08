@@ -41,7 +41,7 @@ public class Options implements Serializable {
      */
     private String siteAuthorWechat;
 
-    private String siteAuthorQQ;
+    private String siteAuthorQq;
 
     private String siteAuthorWeibo;
 

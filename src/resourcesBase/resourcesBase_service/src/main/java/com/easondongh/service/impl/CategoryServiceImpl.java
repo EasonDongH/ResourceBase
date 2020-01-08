@@ -30,7 +30,9 @@ public class CategoryServiceImpl implements CategoryService {
             parentNodes.add(category);
             do {
                 category = this.categoryDao.getCategoryById(category.getPid());
-                if(category == null) break;
+                if(category == null) {
+                    break;
+                }
                 parentNodes.add(category);
             }while (!Category.isRoot(category));
             Collections.sort(parentNodes, new Comparator<Category>() {
