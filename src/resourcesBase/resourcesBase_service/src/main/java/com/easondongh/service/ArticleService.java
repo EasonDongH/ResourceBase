@@ -20,7 +20,7 @@ public interface ArticleService {
      * @param id
      * @return
      */
-    Article getArticleById(Integer id);
+    Article getArticleById(Long id);
 
     /**
      * 获取该分类id下的所有文章

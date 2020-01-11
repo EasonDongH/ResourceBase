@@ -277,8 +277,8 @@ $(".comment-reply-link").click(function () {
     $("#cancel-comment-reply-link").show();
     $("#reply-title-word").html("回复 " + authorName);
     var commentId = $(this).parents('.comment-body').attr("id").match(/\d+/g);
-    $("input[name=commentPid]").attr("value", commentId);
-    $("input[name=commentPname]").attr("value", authorName);
+    $("input[name=pid]").attr("value", commentId);
+    $("input[name=pname]").attr("value", authorName);
     $("#comment").attr("placeholder", "@ " + authorName)
 })
 
@@ -307,6 +307,7 @@ function increaseViewCount(articleId) {
             }
         });
 }
+
 //点赞+1
 function increaseLikeCount(articleId) {
     $.ajax({
@@ -329,29 +330,26 @@ function increaseLikeCount(articleId) {
 //ajax提交评论信息
 $("#comment_form").submit(function () {
     $.ajax({
-        async: false,
+        async: true,
         type: "POST",
         url: '/comment',
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         data: $("#comment_form").serialize(),
         success: function (data) {
-            if (data.code == 0) {
-                layer.msg("评论成功！");
+            if (data.flag) {
+                layer.msg(data.data);
                 localStorage.setItem('author', $("#author_name").val());
                 localStorage.setItem('email', $("#author_email").val());
-                localStorage.setItem('url', $("#author_url").val());
-                window.setTimeout(window.location.reload, 2000);
-                return false;
+                window.setTimeout(window.location.reload(),1000);
             } else {
-                layer.msg(data.msg);
+                layer.msg(data.data);
             }
-
         },
         error: function () {
         }
     })
     return false;
-})
+});
 
 //百度分享
 window._bd_share_config = {

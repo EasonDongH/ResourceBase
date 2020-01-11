@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author EasonDongH
+ */
 @Data
 public class SlideshowContent implements Serializable {
 
@@ -13,7 +16,7 @@ public class SlideshowContent implements Serializable {
 
     private int aid;
 
-    private int photoId;
+    private long photoId;
 
     private String summarize;
 

@@ -18,7 +18,7 @@ public class User implements Serializable {
 
     private String email;
 
-    private int avatarId;
+    private long avatarId;
 
     private Date registerTime;
 

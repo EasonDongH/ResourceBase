@@ -13,7 +13,7 @@ public class PhotoServiceImpl implements PhotoService {
     private PhotoDao photoDao;
 
     @Override
-    public Photo getById(Integer id) {
+    public Photo getById(Long id) {
         return this.photoDao.getById(id);
     }
 }

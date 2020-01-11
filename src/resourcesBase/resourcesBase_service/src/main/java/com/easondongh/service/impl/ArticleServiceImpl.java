@@ -23,7 +23,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article getArticleById(Integer id) {
+    public Article getArticleById(Long id) {
         return this.articleDao.getArticleById(id);
     }
 

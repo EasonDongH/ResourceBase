@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+/**
+ * @author EasonDongH
+ */
 public class JsonUtil {
 
     /**

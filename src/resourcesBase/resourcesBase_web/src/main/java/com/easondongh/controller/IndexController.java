@@ -18,11 +18,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author EasonDongH
+ */
 @Controller
 public class IndexController {
 
-    @Autowired
-    private OptionsService optionsService;
     @Autowired
     private NoticeService noticeService;
     @Autowired

@@ -51,7 +51,7 @@ public class Article implements Serializable {
      */
     private List<Tag> tagList;
 
-    private int userId;
+    private Long userId;
 
     private User user;
 }

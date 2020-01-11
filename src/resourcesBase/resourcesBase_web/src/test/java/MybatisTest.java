@@ -32,7 +32,7 @@ public class MybatisTest {
 
     @Test
     public void testGetArticleById(){
-        Article article = articleDao.getArticleById(1);
+        Article article = articleDao.getArticleById(1L);
         System.out.println(article);
     }
 

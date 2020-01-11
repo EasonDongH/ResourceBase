@@ -2,9 +2,11 @@ package com.easondongh.controller;
 
 import com.easondongh.domain.Article;
 import com.easondongh.domain.Category;
+import com.easondongh.domain.Comment;
 import com.easondongh.domain.ResultInfo;
 import com.easondongh.service.ArticleService;
 import com.easondongh.service.CategoryService;
+import com.easondongh.service.CommentService;
 import com.easondongh.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private CommentService commentService;
 
     /**
      * 查询文章详细
@@ -35,7 +39,7 @@ public class ArticleController {
      * @return
      */
     @RequestMapping("/{articleId}")
-    public String getArticleById(@PathVariable("articleId") Integer id, Model model){
+    public String getArticleById(@PathVariable("articleId") Long id, Model model){
         Article article = this.articleService.getArticleById(id);
         // 对无效查询响应主页面
         if(article == null) {
@@ -48,6 +52,9 @@ public class ArticleController {
         model.addAttribute("preArticle",preArticle);
         Article nextArticle = this.articleService.getNextArticle(article.getId());
         model.addAttribute("nextArticle",nextArticle);
+        List<Comment> commentList = this.commentService.getCommentListByaid(id);
+        model.addAttribute("commentList",commentList);
+
         return "articleDetail";
     }
 

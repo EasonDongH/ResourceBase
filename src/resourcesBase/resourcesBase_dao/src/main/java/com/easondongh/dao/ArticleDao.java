@@ -29,6 +29,7 @@ public interface ArticleDao {
     @Select("select * from article where id = #{id} and status = 1")
     @Results(id = "articleMap", value = {
             @Result(id = true, property = "id", column = "id"),
+            @Result(property = "userId", column = "userId"),
             @Result(property = "articleTitle", column = "articleTitle"),
             @Result(property = "articleContent", column = "articleContent"),
             @Result(property = "articleSummary", column = "articleSummary"),
@@ -42,7 +43,7 @@ public interface ArticleDao {
             @Result(property = "tagList", column = "id", javaType = java.util.List.class, many = @Many(select = "com.easondongh.dao.TagDao.getListByAid")),
             @Result(property = "user", column = "userId", javaType = User.class, one = @One(select = "com.easondongh.dao.UserDao.getById"))
     })
-    Article getArticleById(Integer id);
+    Article getArticleById(Long id);
 
     /**
      * 获取该分类id下的所有文章

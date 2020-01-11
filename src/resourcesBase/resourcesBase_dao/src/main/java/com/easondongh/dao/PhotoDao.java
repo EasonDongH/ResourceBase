@@ -3,6 +3,9 @@ package com.easondongh.dao;
 import com.easondongh.domain.Photo;
 import org.apache.ibatis.annotations.Select;
 
+/**
+ * @author EasonDongH
+ */
 public interface PhotoDao {
 
     /**
@@ -11,5 +14,5 @@ public interface PhotoDao {
      * @return
      */
     @Select("select * from photo where id = #{id}")
-    Photo getById(Integer id);
+    Photo getById(Long id);
 }

@@ -9,5 +9,5 @@ public interface PhotoService {
      * @param id
      * @return
      */
-    Photo getById(Integer id);
+    Photo getById(Long id);
 }

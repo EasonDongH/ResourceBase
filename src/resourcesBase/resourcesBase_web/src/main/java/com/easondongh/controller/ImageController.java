@@ -38,7 +38,7 @@ public class ImageController {
 
     @RequestMapping("/{photoId}")
     @ResponseBody
-    public void getPhoto(@PathVariable("photoId") int photoId, HttpServletResponse response) {
+    public void getPhoto(@PathVariable("photoId") long photoId, HttpServletResponse response) {
         Photo photo = this.photoService.getById(photoId);
         if (photo != null) {
             writeStream(photo.getPath(), response);
