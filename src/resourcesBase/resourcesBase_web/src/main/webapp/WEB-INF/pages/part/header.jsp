@@ -44,9 +44,8 @@
                 <span class="nav-search">
                     <i class="fa fa-search"></i>
                 </span>
-            <div class="logo-site"><h1 class="site-title">
-                <a href="/" title="${options.optionSiteTitle}">${options.optionSiteTitle}</a>
-            </h1>
+            <div class="logo-site">
+                <h1 class="site-title"><a href="/" title="${options.optionSiteTitle}">${options.optionSiteTitle}</a></h1>
                 <p class="site-description">${options.optionSiteDescrption}</p>
             </div><!-- .logo-site -->
             <div id="site-nav-wrap">

@@ -220,7 +220,7 @@
 
                 <%--评论区域 start--%>
             <div class="scroll-comments"></div>
-            <div id="comments" class="comments-area">
+            <div id="comments" class="comments-area ">
                 <div id="respond" class="comment-respond">
                     <h3 id="reply-title" class="comment-reply-title"><span id="reply-title-word">发表评论</span>
                         <a rel="nofollow" id="cancel-comment-reply-link" href="/article/${article.id}#respond" style="">取消回复</a>
@@ -241,7 +241,8 @@
                             </div>
                         </c:if>
                         <p class="comment-form-comment">
-                            <textarea id="comment" name="content" rows="4" tabindex="1" style="resize:none;" required></textarea>
+                            <textarea id="comment" name="content" rows="4" tabindex="1" style="resize:none;"
+                                      required></textarea>
                         </p>
                         <div id="comment-author-info">
                             <input type="hidden" name="pid" value="0">
@@ -252,7 +253,7 @@
                                     <input type="text" name="nickName" id="author_name" tabindex="2">
                                 </p>
                                 <p class="comment-form-email">
-                                    <label for="author_email">邮箱</label>
+                                    <label for="author_email">联系方式</label>
                                     <input type="email" name="commentAuthorEmail" id="author_email" tabindex="3">
                                 </p>
                             </c:if>
@@ -280,7 +281,7 @@
                                     <div class="comment-author vcard">
                                         <img class="avatar" src="/image/${c.avatarId}" alt="avatar"
                                              style="display: block;">
-                                        <strong>${c.nickName} </strong>
+                                        <strong>${c.nickName}</strong>
                                         <c:if test="${c.userId == article.userId}">
                                             <i class="fa fa-black-tie" style="color: #c40000;"></i>
                                             <span class=""
@@ -288,22 +289,31 @@
                                         </c:if>
                                         <span class="comment-meta commentmetadata">
                                             <span class="ua-info" style="display: inline;">
+                                                <div style="float: right;">
+                                                    <c:if test="${c.childCommentCount > 0}">
+                                                        <span class="readreply">
+                                                                <a id="reply-list-a-${c.id}" rel="nofollow"
+                                                                   class="comment-reply-link" href="#respond"
+                                                                   onclick="readreply(${c.id})">查看回复(${c.childCommentCount})</a>
+                                                            <input type="hidden" id="reply-count-${c.id}"
+                                                                   value="${c.childCommentCount}"/>
+                                                        </span>
+                                                    </c:if>
+                                                     <span class="reply">
+                                                            <a rel="nofollow" class="comment-reply-link"
+                                                               href="#respond">回复</a>
+                                                     </span>
+                                                </div>
                                                 <br>
-                                                <span class="comment-aux">
-                                                    <span class="reply">
-                                                        <a rel="nofollow" class="comment-reply-link" href="#respond"
-                                                           onclick="replyComment(${c.id})">回复</a>
-                                                    </span>
-                                                    <fmt:formatDate value="${c.createTime}"
-                                                                    pattern="yyyy年MM月dd日 HH:mm:ss"/>&nbsp;
-                                                    <c:if test="${sessionScope.user != null}">
+                                                <fmt:formatDate value="${c.createTime}"
+                                                                pattern="yyyy年MM月dd日 HH:mm:ss"/>&nbsp;
+                                                <c:if test="${sessionScope.user != null}">
                                                         <a href="javascript:void(0)"
                                                            onclick="deleteComment(${c.commentId})">删除</a>
-                                                        <a class="comment-edit-link"
-                                                           href="/admin/comment/edit/${c.commentId}"
-                                                           target="_blank">编辑</a>
-                                                    </c:if>
-                                                </span>
+                                                    <a class="comment-edit-link"
+                                                       href="/admin/comment/edit/${c.commentId}"
+                                                       target="_blank">编辑</a>
+                                                </c:if>
                                             </span>
                                         </span>
                                         <p>
@@ -314,7 +324,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <ul class="children" style="display: none;">
+                                <ul class="children" style="display: none;" id="reply-list-${c.id}">
                                     <c:set var="floor2" value="0"/>
                                     <c:forEach items="${commentList}" var="c2">
                                         <c:if test="${c.id == c2.pid}">
@@ -338,11 +348,12 @@
                                                         </c:if>
                                                         <span class="comment-meta">
                                                     <span class="ua-info" style="display: inline;">
-                                                    <br>
                                                     <span class="comment-aux">
                                                         <span class="reply">
-                                                            <a rel="nofollow" class="comment-reply-link" href="#respond" onclick="replyComment()">回复</a>
+                                                            <a rel="nofollow" class="comment-reply-link" href="#respond"
+                                                               onclick="replyComment()">回复</a>
                                                         </span>
+                                                        <br>
                                                         <fmt:formatDate value="${c2.createTime}"
                                                                         pattern="yyyy年MM月dd日 HH:mm:ss"/>&nbsp;
                                                         <c:if test="${sessionScope.user != null}">
@@ -385,7 +396,6 @@
 <%--侧边栏 end--%>
 
 <rapid:override name="footer-script">
-
     <script type="text/javascript">
         $(document).ready(function () {
             if ($('#author_name').val() == '') {

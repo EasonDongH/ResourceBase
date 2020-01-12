@@ -279,15 +279,27 @@ $(".comment-reply-link").click(function () {
     var commentId = $(this).parents('.comment-body').attr("id").match(/\d+/g);
     $("input[name=pid]").attr("value", commentId);
     $("input[name=pname]").attr("value", authorName);
-    $("#comment").attr("placeholder", "@ " + authorName)
+    $("#comment").attr("placeholder", "@ " + authorName);
 })
 
 $("#cancel-comment-reply-link").click(function () {
     $("#cancel-comment-reply-link").hide();
-    $("input[name=commentPid]").attr("value", 0);
-    $("input[name=commentPname]").attr("value", "");
+    $("input[name=pid]").attr("value", 0);
+    $("input[name=pname]").attr("value", "");
+    $("#comment").attr("placeholder","");
     $("#reply-title-word").html("发表评论");
 })
+
+
+function readreply(id) {
+    if ($("#reply-list-"+id).css("display") == "none"){// 折叠->展开
+        $("#reply-list-a-"+id).text("收起回复");
+    } else {// 展开->折叠
+        var cnt = $("#reply-count-"+id).val();
+        $("#reply-list-a-"+id).text("查看回复(" + cnt + ")");
+    }
+    $("#reply-list-"+id).toggle();
+}
 
 //文章浏览量+1
 function increaseViewCount(articleId) {

@@ -48,6 +48,9 @@
                             <a href="/article/${a.id}" rel="bookmark" target="_blank">${a.articleTitle}</a>
                         </h2>
                     </header>
+                    <span class="entry-more">
+                        <a href="/article/${a.id}" rel="bookmark" target="_blank">阅读全文</a>
+                    </span>
                     <div class="entry-content">
                         <div class="archive-content">${a.articleSummary}...<br><br></div>
                         <span class="title-l"></span>
@@ -57,35 +60,32 @@
                                     <fmt:formatNumber value="${interval/1000/60/60/24}" pattern="#0" var="days"/>
                                     <c:if test="${days <= 7}">NEW</c:if>
                         </span>
-                        <span class="entry-meta">
-                            <span class="date">
-                                <fmt:formatDate value="${a.articleCreateTime}" pattern="yyyy年MM月dd日"/>
-                            &nbsp;&nbsp;
+                        <div style="float: right">
+                            <span class="entry-meta">
+                                <span class="date">
+                                    <fmt:formatDate value="${a.articleCreateTime}" pattern="yyyy年MM月dd日"/>&nbsp;&nbsp;
+                                </span>
+                                <span class="views">
+                                    <i class="fa fa-eye"></i>
+                                        ${a.articleViewCount} views
+                                </span>
+                                <span class="comment">&nbsp;&nbsp;
+                                    <a href="/article/${a.id}#comments" rel="external nofollow">
+                                      <i class="fa fa-comment-o"></i>
+                                        <c:choose>
+                                            <c:when test="${a.articleCommentCount == 0}">
+                                                发表评论
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${a.articleCommentCount}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a>
+                                </span>
                             </span>
-                            <span class="views">
-                                <i class="fa fa-eye"></i>
-                                    ${a.articleViewCount} views
-                            </span>
-                            <span class="comment">&nbsp;&nbsp;
-                                <a href="/article/${a.id}#comments" rel="external nofollow">
-                                  <i class="fa fa-comment-o"></i>
-                                    <c:choose>
-                                        <c:when test="${a.articleCommentCount == 0}">
-                                            发表评论
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${a.articleCommentCount}
-                                        </c:otherwise>
-                                    </c:choose>
-                                </a>
-                            </span>
-                        </span>
+                        </div>
                         <div class="clear"></div>
                     </div><!-- .entry-content -->
-
-                    <span class="entry-more">
-                        <a href="/article/${a.id}" rel="bookmark" target="_blank">阅读全文</a>
-                    </span>
                 </article>
             </c:forEach>
         </main>

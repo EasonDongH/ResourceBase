@@ -30,6 +30,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getCommentListByaid(Long articleId) {
-        return commentDao.getCommentListByaid(articleId);
+        List<Comment> list = commentDao.getCommentListByaid(articleId);
+        for(Comment comment : list) {
+            comment.setChildCommentCount((int)list.stream().filter(f->f.getPid() == comment.getId()).count());
+        }
+        return list;
     }
 }

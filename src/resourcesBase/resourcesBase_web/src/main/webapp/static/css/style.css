@@ -1,3 +1,4 @@
+
 /*
 绿色：#009688
 蓝色：#009688
@@ -1424,7 +1425,7 @@ a, button, input {
 
 .entry-more a {
     position: absolute;
-    bottom: 18px;
+    top: 18px;
     right: -1px;
     background: #398898;
     color: #fff;
@@ -1456,10 +1457,10 @@ a, button, input {
 
 /** 文章信息 **/
 .entry-meta {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 14px;
     color: #999;
-    left: 240px;
+    /*left: 240px;*/
 }
 
 .format-aside .entry-meta,
@@ -2917,8 +2918,8 @@ img.alignleft {
 /** 头像留言 **/
 #message .avatar {
     float: left;
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     margin: 6px 8px 0 0;
 }
 
@@ -3453,7 +3454,7 @@ img.alignleft {
     }
 }
 .comment-body {
-    min-height:75px;
+    min-height:45px;
 }
 
 .comment-body:hover .avatar {
@@ -3493,18 +3494,34 @@ img.alignleft {
     color: #999;
 }
 
-.reply {
-    position: absolute;
+.readreply {
+    /*position: absolute;*/
+    float: right;
     top: 15px;
-    right: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    /*right: 20px;*/
+}
+
+.reply {
+    /*position: absolute;*/
+    float: right;
+    top: 15px;
+    /*right: 100px;*/
 }
 
 @media screen and (min-width: 900px) {
     .reply {
         display: none;
     }
-
     .comment-body:hover .reply {
+        display: inline;
+        animation: fade-in;
+        animation-duration: 0.2s;
+        -webkit-animation: fade-in 0.2s;
+    }
+
+    .comment-body:hover .readreply {
         display: inline;
         animation: fade-in;
         animation-duration: 0.2s;
@@ -3522,6 +3539,22 @@ img.alignleft {
 }
 
 .reply a:hover {
+    background: #009688;
+    color: #fff;
+    border: 1px solid #009688;
+    transition: all 0.2s ease-in 0s;
+}
+
+.readreply a {
+    background: #fff;
+    line-height: 25px;
+    display: block;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.readreply a:hover {
     background: #009688;
     color: #fff;
     border: 1px solid #009688;
@@ -3677,7 +3710,7 @@ img.alignleft {
     display: inline-block;
     top: 0;
     left: 0;
-    width: 75px;
+    width: 80px;
     padding: 5px 10px;
     border-radius: 2px 0 0 2px;
     border: 1px solid #ddd;
@@ -3833,7 +3866,7 @@ img.alignleft {
 /** 定位 **/
 .comments-anchor, .scroll-comments {
     position: relative;
-    top: -95px;
+    top: -155px;
 }
 
 li.comments-anchor {
@@ -3974,8 +4007,6 @@ li.comments-anchor {
     animation-duration: 1.0s;
     -webkit-animation: fade-in 1.0s;
 }
-
-
 
 /** 评论图标 **/
 #comments .fa-exclamation-circle,

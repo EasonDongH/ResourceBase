@@ -22,10 +22,10 @@ public interface CommentDao {
     int addComment(Comment comment);
 
     /**
-     * 根据文章id获取评论列表（status!=0），按updateTime倒序排列
+     * 根据文章id获取评论列表（status!=0），按createTime倒序排列
      * @param articleId
      * @return
      */
-    @Select("select * from comment where aid=#{articleId} and status!=0 order by updateTime desc")
+    @Select("select * from comment where aid=#{articleId} and status!=0 order by createTime desc")
     List<Comment> getCommentListByaid(Long articleId);
 }

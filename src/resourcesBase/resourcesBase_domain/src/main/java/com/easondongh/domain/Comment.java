@@ -62,6 +62,11 @@ public class Comment implements Serializable {
 
     private String content;
 
+    /**
+     * 该评论下的评论数量
+     */
+    private int childCommentCount;
+
     private Date createTime;
 
     private Date updateTime;
