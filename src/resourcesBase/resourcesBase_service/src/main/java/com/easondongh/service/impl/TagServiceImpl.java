@@ -1,6 +1,7 @@
 package com.easondongh.service.impl;
 
 import com.easondongh.dao.TagDao;
+import com.easondongh.domain.Tag;
 import com.easondongh.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,10 @@ public class TagServiceImpl implements TagService {
     @Override
     public Integer countTag() {
         return this.tagDao.countTag();
+    }
+
+    @Override
+    public Tag getTagById(Long id) {
+        return this.tagDao.getTagById(id);
     }
 }

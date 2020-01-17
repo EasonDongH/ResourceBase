@@ -1,7 +1,7 @@
 package com.easondongh.controller;
 
 import com.easondongh.domain.Article;
-import com.easondongh.domain.Category;
+import com.easondongh.domain.Tag;
 import com.easondongh.service.ArticleService;
 import com.easondongh.service.CategoryService;
 import com.easondongh.service.TagService;
@@ -19,36 +19,34 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Tag标签控制器
  * @author EasonDongH
+ * @date 2020/1/17 14:31
  */
 @Controller
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/tag")
+public class TagController {
 
+    @Autowired
+    private TagService tagService;
     @Autowired
     private ArticleService articleService;
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private TagService tagService;
 
-    @RequestMapping("/{categoryId}")
-    public String getArticleListByCid(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,
+    @RequestMapping("/{tagId}")
+    public String getArticleListByTid(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,
                                       @RequestParam(required = false, defaultValue = "10") Integer pageSize,
-                                      @PathVariable("categoryId") Long cid, Model model){
-        Map<String,Object> params = new HashMap<>();
-        params.put("status", 1);
-        // 获取当前分类的子节点类别
-        List<Long> childNodes = this.categoryService.getChildNodesIdByCid(cid);
-        childNodes.add(cid);
-        params.put("categoryId", childNodes);
-        PageInfo<Article> pageInfo = this.articleService.pageArticle(pageIndex, pageSize, params);
+                                      @PathVariable("tagId") Long tid, Model model) {
+        // 获取该Tag信息
+        Tag tag = this.tagService.getTagById(tid);
+        if(tag == null) {
+            return "index";
+        }
+        model.addAttribute("tag", tag);
+        // 获取分页查询数据
+        PageInfo<Article> pageInfo = this.articleService.pageArticleByTid(pageIndex, pageSize, tid);
         model.addAttribute("pageInfo", pageInfo);
-        // 计算面包屑导航的层次关系
-        Category category = this.categoryService.getCategoryById(cid);
-        model.addAttribute("category", category);
-        List<Category> parentNodes = this.categoryService.getParentNodeById(category);
-        model.addAttribute("parentNodes", parentNodes);
 
         // 侧边栏
         // 网站统计情况
@@ -70,6 +68,7 @@ public class CategoryController {
         List<Article> mostCommentArticleList = this.articleService.getMostCommentArticleList();
         model.addAttribute("mostCommentArticleList", mostCommentArticleList);
 
-        return "articleListByCategory";
+        return "articleListByTag";
     }
+
 }

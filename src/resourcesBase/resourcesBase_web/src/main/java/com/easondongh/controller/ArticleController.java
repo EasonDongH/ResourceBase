@@ -49,15 +49,19 @@ public class ArticleController {
         if(article == null) {
             return "index";
         }
-        List<Category> parentNodes = this.categoryService.getParentNodeById(article.getCategory());
         model.addAttribute("article", article);
-        model.addAttribute("parentNodes", parentNodes);
-        Article preArticle = this.articleService.getPreviousArticle(article.getId());
-        model.addAttribute("preArticle",preArticle);
-        Article nextArticle = this.articleService.getNextArticle(article.getId());
-        model.addAttribute("nextArticle",nextArticle);
+        // 获取该文章评论列表
         List<Comment> commentList = this.commentService.getCommentListByaid(id);
         model.addAttribute("commentList",commentList);
+        // 获取该文章所属的分类层次结构
+        List<Category> parentNodes = this.categoryService.getParentNodeById(article.getCategory());
+        model.addAttribute("parentNodes", parentNodes);
+        //  获取上一篇文章
+        Article preArticle = this.articleService.getPreviousArticle(article.getId());
+        model.addAttribute("preArticle",preArticle);
+        //  获取下一篇文章
+        Article nextArticle = this.articleService.getNextArticle(article.getId());
+        model.addAttribute("nextArticle",nextArticle);
 
         // 侧边栏
         // 网站统计情况

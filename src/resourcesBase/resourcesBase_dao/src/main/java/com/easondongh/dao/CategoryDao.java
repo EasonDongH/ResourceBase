@@ -28,4 +28,12 @@ public interface CategoryDao {
      */
     @Select("select count(*) from category")
     int countCategory();
+
+    /**
+     * 获取该id下的所有子节点的id
+     * @param id
+     * @return
+     */
+    @Select("SELECT id FROM category WHERE pid = #{id}")
+    List<Long> getChildNodesIdByCid(Long id);
 }

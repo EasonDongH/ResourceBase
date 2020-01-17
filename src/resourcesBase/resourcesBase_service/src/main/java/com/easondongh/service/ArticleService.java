@@ -35,6 +35,15 @@ public interface ArticleService {
     PageInfo<Article> pageArticle(Integer pageIndex, Integer pageSize);
 
     /**
+     * 根据Tag分页查询文章
+     * @param pageIndex
+     * @param pageSize
+     * @param tid
+     * @return
+     */
+    PageInfo<Article> pageArticleByTid(Integer pageIndex, Integer pageSize, Long tid);
+
+    /**
      * 根据文章id获取文章实体
      * @param id
      * @return

@@ -20,6 +20,13 @@ public interface CategoryService {
     List<Category> getParentNodeById(Category category);
 
     /**
+     * 获取该cid下的所有子节点的cid
+     * @param cid
+     * @return
+     */
+    List<Long> getChildNodesIdByCid(Long cid);
+
+    /**
      * 获取该id对应的category
      * @param id
      * @return

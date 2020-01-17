@@ -19,7 +19,8 @@ public interface ArticleDao {
      *
      * @return
      */
-    @Select("select * from article where status = 1")
+    @Select("select * from article where status = 1 " +
+            "ORDER BY articleOrder DESC, articleCommentCount DESC, articleLikeCount DESC, articleCreateTime DESC")
     List<Article> listAll();
 
     /**
@@ -61,8 +62,18 @@ public interface ArticleDao {
      * @param cid
      * @return
      */
-    @Select("select * from article where status = 1 and categoryId = #{cid}")
+    @Select("select * from article where status = 1 and categoryId = #{cid} " +
+            "ORDER BY articleOrder DESC, articleCommentCount DESC, articleLikeCount DESC, articleCreateTime DESC")
     List<Article> getArticleListByCid(Long cid);
+
+    /**
+     * 根据Tag获取文章
+     * @param tid
+     * @return
+     */
+    @Select("select * from article where status = 1 and id in (select aid from article_tag where tid = #{tid}) " +
+            "ORDER BY articleOrder DESC, articleCommentCount DESC, articleLikeCount DESC, articleCreateTime DESC")
+    List<Article> getArticleListByTid(Long tid);
 
     /**
      * 根据文章id获取文章喜欢数

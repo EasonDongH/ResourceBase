@@ -40,6 +40,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public PageInfo<Article> pageArticleByTid(Integer pageIndex, Integer pageSize, Long tid) {
+        PageHelper.startPage(pageIndex,pageSize);
+        List<Article> articleList = this.articleDao.getArticleListByTid(tid);
+        return new PageInfo<Article>(articleList);
+    }
+
+    @Override
     public Article getArticleById(Long id) {
         return this.articleDao.getArticleById(id);
     }

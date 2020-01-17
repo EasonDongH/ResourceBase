@@ -46,6 +46,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Long> getChildNodesIdByCid(Long cid) {
+        return this.categoryDao.getChildNodesIdByCid(cid);
+    }
+
+    @Override
     public Category getCategoryById(Long id) {
         return this.categoryDao.getCategoryById(id);
     }
