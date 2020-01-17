@@ -14,5 +14,5 @@ public interface UserDao {
      * @return
      */
     @Select("select * from user where id = #{id}")
-    User getById(Integer id);
+    User getById(Long id);
 }

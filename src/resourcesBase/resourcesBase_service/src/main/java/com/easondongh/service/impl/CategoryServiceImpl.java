@@ -38,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
             Collections.sort(parentNodes, new Comparator<Category>() {
                 @Override
                 public int compare(Category o1, Category o2) {
-                    return o1.getPid() - o2.getPid();
+                    return (int)(o1.getPid() - o2.getPid());
                 }
             });
         }
@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(Integer id) {
+    public Category getCategoryById(Long id) {
         return this.categoryDao.getCategoryById(id);
     }
 

@@ -1,7 +1,6 @@
 package com.easondongh.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

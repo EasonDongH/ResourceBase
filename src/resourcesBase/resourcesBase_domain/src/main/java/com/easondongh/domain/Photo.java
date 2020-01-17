@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 public class Photo implements Serializable {
 
-    private long id;
+    private Long id;
     /**
      * 图片路径
      */

@@ -12,27 +12,27 @@ import java.util.Date;
 @Data
 public class Comment implements Serializable {
 
-    private long id;
+    private Long id;
 
     /**
      * 该条评论的父节点（为0表示没有父节点）
      */
-    private long pid;
+    private Long pid;
 
     /**
      * 文章id
      */
-    private long aid;
+    private Long aid;
 
     /**
      * 为0时表示为游客
      */
-    private long userId;
+    private Long userId;
 
     /**
      * 头像id
      */
-    private long avatarId;
+    private Long avatarId;
 
     /**
      * 游客的nickName为"游客"

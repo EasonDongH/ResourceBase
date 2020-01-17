@@ -3,10 +3,13 @@ package com.easondongh.service.impl;
 import com.easondongh.dao.ArticleDao;
 import com.easondongh.domain.Article;
 import com.easondongh.service.ArticleService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author EasonDongH
@@ -23,33 +26,47 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public PageInfo<Article> pageArticle(Integer pageIndex, Integer pageSize, Map<String, Object> params) {
+        PageHelper.startPage(pageIndex,pageSize);
+        List<Article> articleList = this.articleDao.pageArticle(params);
+        return new PageInfo<Article>(articleList);
+    }
+
+    @Override
+    public PageInfo<Article> pageArticle(Integer pageIndex, Integer pageSize) {
+        PageHelper.startPage(pageIndex,pageSize);
+        List<Article> articleList = this.articleDao.listAll();
+        return new PageInfo<Article>(articleList);
+    }
+
+    @Override
     public Article getArticleById(Long id) {
         return this.articleDao.getArticleById(id);
     }
 
     @Override
-    public List<Article> getArticleListByCid(Integer cid) {
+    public List<Article> getArticleListByCid(Long cid) {
         return this.articleDao.getArticleListByCid(cid);
     }
 
     @Override
-    public Integer getArticleLikeCountById(Integer id) {
+    public Integer getArticleLikeCountById(Long id) {
         return this.articleDao.getArticleLikeCountById(id);
     }
 
     @Override
-    public synchronized boolean updateArticleLikeCountById(Integer id, Integer curLikeCnt) {
+    public synchronized boolean updateArticleLikeCountById(Long id, Integer curLikeCnt) {
         Integer result = this.articleDao.updateArticleLikeCountById(id,curLikeCnt);
         return result > 0;
     }
 
     @Override
-    public Integer getArticleViewCountById(Integer id) {
+    public Integer getArticleViewCountById(Long id) {
         return this.articleDao.getArticleViewCountById(id);
     }
 
     @Override
-    public synchronized boolean updateArticleViewCountById(Integer id, Integer curViewCnt) {
+    public synchronized boolean updateArticleViewCountById(Long id, Integer curViewCnt) {
         return this.articleDao.updateArticleViewCountById(id,curViewCnt) > 0;
     }
 
@@ -74,12 +91,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article getPreviousArticle(Integer id) {
+    public Article getPreviousArticle(Long id) {
         return this.articleDao.getPreviousArticle(id);
     }
 
     @Override
-    public Article getNextArticle(Integer id) {
+    public Article getNextArticle(Long id) {
         return this.articleDao.getNextArticle(id);
     }
 }

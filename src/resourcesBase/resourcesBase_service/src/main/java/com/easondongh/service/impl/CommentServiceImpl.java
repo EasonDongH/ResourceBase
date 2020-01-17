@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getCommentListByaid(Long articleId) {
         List<Comment> list = commentDao.getCommentListByaid(articleId);
         for(Comment comment : list) {
-            comment.setChildCommentCount((int)list.stream().filter(f->f.getPid() == comment.getId()).count());
+            comment.setChildCommentCount((int)list.stream().filter(f->f.getPid().equals(comment.getId())).count());
         }
         return list;
     }

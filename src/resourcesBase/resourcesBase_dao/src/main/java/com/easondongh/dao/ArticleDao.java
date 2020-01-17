@@ -1,11 +1,13 @@
 package com.easondongh.dao;
 
+import com.easondongh.dao.dynamicSql.ArticleDynaSqlProvider;
 import com.easondongh.domain.Article;
 import com.easondongh.domain.Category;
 import com.easondongh.domain.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author EasonDongH
@@ -19,6 +21,15 @@ public interface ArticleDao {
      */
     @Select("select * from article where status = 1")
     List<Article> listAll();
+
+    /**
+     * 根据条件查询
+     * @param params
+     * @return
+     */
+    @SelectProvider(type = ArticleDynaSqlProvider.class, method = "selectByParam")
+    @ResultMap(value = "articleMap")
+    List<Article> pageArticle(Map<String,Object> params);
 
     /**
      * 根据文章id获取文章实体
@@ -51,7 +62,7 @@ public interface ArticleDao {
      * @return
      */
     @Select("select * from article where status = 1 and categoryId = #{cid}")
-    List<Article> getArticleListByCid(Integer cid);
+    List<Article> getArticleListByCid(Long cid);
 
     /**
      * 根据文章id获取文章喜欢数
@@ -60,7 +71,7 @@ public interface ArticleDao {
      * @return
      */
     @Select("select articleLikeCount from article where id = #{id}")
-    Integer getArticleLikeCountById(Integer id);
+    Integer getArticleLikeCountById(Long id);
 
     /**
      * 根据文章id更新文章喜欢数：因为当前只涉及单条记录、单个字段的更新，可以不使用事务
@@ -70,7 +81,7 @@ public interface ArticleDao {
      * @return
      */
     @Update("update article set articleLikeCount=#{curLikeCnt} where id=#{id}")
-    int updateArticleLikeCountById(@Param("id") Integer id, @Param("curLikeCnt") Integer curLikeCnt);
+    int updateArticleLikeCountById(@Param("id") Long id, @Param("curLikeCnt") Integer curLikeCnt);
 
     /**
      * 根据文章id获取文章查看数
@@ -78,7 +89,7 @@ public interface ArticleDao {
      * @return
      */
     @Select("select articleViewCount from article where id = #{id}")
-    Integer getArticleViewCountById(Integer id);
+    Integer getArticleViewCountById(Long id);
 
     /**
      * 根据文章id更新文章查看数：因为当前只涉及单条记录、单个字段的更新，可以不使用事务
@@ -87,7 +98,7 @@ public interface ArticleDao {
      * @return
      */
     @Update("update article set articleViewCount=#{curViewCnt} where id=#{id}")
-    int updateArticleViewCountById(@Param("id") Integer id, @Param("curViewCnt") Integer curViewCnt);
+    int updateArticleViewCountById(@Param("id") Long id, @Param("curViewCnt") Integer curViewCnt);
 
     /**
      * 统计文章总数
@@ -124,7 +135,7 @@ public interface ArticleDao {
      */
     @Select("select * from article where status = 1 and id < #{id} order by id limit 1")
     @ResultMap(value = "articleMap")
-    Article getPreviousArticle(Integer id);
+    Article getPreviousArticle(Long id);
 
     /**
      * 获取下一篇文章：下一个id
@@ -133,5 +144,9 @@ public interface ArticleDao {
      */
     @Select("select * from article where status = 1 and id > #{id} order by id limit 1")
     @ResultMap(value = "articleMap")
-    Article getNextArticle(Integer id);
+    Article getNextArticle(Long id);
+
+    @Insert("insert into article (id,articleTitle,articleContent,articleSummary,articleCreateTime,articleUpdateTime,categoryId,userId)" +
+            "values(#{id},#{articleTitle},#{articleContent},#{articleSummary},#{articleCreateTime},#{articleUpdateTime},#{categoryId},#{userId})")
+    int addArticle(Article article);
 }

@@ -20,7 +20,7 @@ public interface CategoryDao {
      * @return
      */
     @Select("select * from category where id = #{id}")
-    Category getCategoryById(Integer id);
+    Category getCategoryById(Long id);
 
     /**
      * 统计分类数量

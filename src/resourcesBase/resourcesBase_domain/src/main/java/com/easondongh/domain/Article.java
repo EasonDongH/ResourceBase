@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Article implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     private String articleTitle;
 
@@ -40,6 +40,8 @@ public class Article implements Serializable {
     private Integer articleLikeCount;
 
     private Integer articleOrder;
+
+    private Long categoryId;
 
     /**
      * 文章分类

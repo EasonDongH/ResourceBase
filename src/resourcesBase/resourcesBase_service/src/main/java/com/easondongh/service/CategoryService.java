@@ -24,7 +24,7 @@ public interface CategoryService {
      * @param id
      * @return
      */
-    Category getCategoryById(Integer id);
+    Category getCategoryById(Long id);
 
     /**
      * 统计分类数量

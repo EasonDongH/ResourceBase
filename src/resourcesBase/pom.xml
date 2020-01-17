@@ -127,6 +127,11 @@
             <version>1.7.2</version>
         </dependency>
         <!--log End-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.2</version>
+        </dependency>
     </dependencies>
 
 

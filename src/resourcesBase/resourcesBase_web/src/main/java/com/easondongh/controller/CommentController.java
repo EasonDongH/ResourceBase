@@ -35,7 +35,7 @@ public class CommentController {
     public String addComment(Comment comment, HttpServletRequest request) throws JsonProcessingException {
         HttpSession session = request.getSession();
         if(session.getAttribute(LOGIN_USER) == null) {
-            comment.setUserId(0);
+            comment.setUserId(0L);
         }
         ResultInfo resultInfo = new ResultInfo();
         if(commentService.addComment(comment)) {

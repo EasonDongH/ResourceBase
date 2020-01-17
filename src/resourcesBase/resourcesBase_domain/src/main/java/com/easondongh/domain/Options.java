@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class Options implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     /**
      * 网站标题

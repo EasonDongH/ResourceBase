@@ -45,7 +45,7 @@
 <rapid:override name="left">
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
-            <c:forEach items="${articleList}" var="a">
+            <c:forEach items="${pageInfo.list}" var="a">
                 <article class="post type-post">
                     <header class="entry-header">
                         <h2 class="entry-title">
@@ -91,6 +91,7 @@
                 </article>
             </c:forEach>
         </main>
+        <%@ include file="part/paging.jsp" %>
     </div>
 </rapid:override>
 <%--主体内容 end--%>

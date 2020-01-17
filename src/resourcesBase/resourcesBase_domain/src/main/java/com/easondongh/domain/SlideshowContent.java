@@ -12,11 +12,11 @@ public class SlideshowContent implements Serializable {
 
     public static final int USE = 1;
 
-    private int id;
+    private Long id;
 
-    private int aid;
+    private Long aid;
 
-    private long photoId;
+    private Long photoId;
 
     private String summarize;
 

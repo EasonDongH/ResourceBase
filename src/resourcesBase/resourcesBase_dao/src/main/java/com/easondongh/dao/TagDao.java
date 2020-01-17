@@ -20,5 +20,8 @@ public interface TagDao {
      * @return
      */
     @Select("select * from tag where id in (select tid from article_tag where aid = 1)")
-    List<Tag> getListByAid(Integer aid);
+    List<Tag> getListByAid(Long aid);
+
+    @Select("select count(*) from tag")
+    int countTag();
 }

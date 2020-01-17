@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class User implements Serializable {
 
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -18,7 +18,7 @@ public class User implements Serializable {
 
     private String email;
 
-    private long avatarId;
+    private Long avatarId;
 
     private Date registerTime;
 

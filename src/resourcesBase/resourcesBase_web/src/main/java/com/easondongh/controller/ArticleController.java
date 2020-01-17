@@ -7,7 +7,9 @@ import com.easondongh.domain.ResultInfo;
 import com.easondongh.service.ArticleService;
 import com.easondongh.service.CategoryService;
 import com.easondongh.service.CommentService;
+import com.easondongh.service.TagService;
 import com.easondongh.util.JsonUtil;
+import com.easondongh.util.SiteInfoHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ public class ArticleController {
     private CategoryService categoryService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private TagService tagService;
 
     /**
      * 查询文章详细
@@ -55,6 +59,26 @@ public class ArticleController {
         List<Comment> commentList = this.commentService.getCommentListByaid(id);
         model.addAttribute("commentList",commentList);
 
+        // 侧边栏
+        // 网站统计情况
+        int[] siteBasicStatistics = new int[6];
+        // 统计文章总数
+        siteBasicStatistics[0] = this.articleService.countArticles();
+        // 统计浏览总量
+        siteBasicStatistics[1] = this.articleService.countArticleViews();
+        // 统计留言数量
+        siteBasicStatistics[2] = this.articleService.countArticleComments();
+        // 统计分类数量
+        siteBasicStatistics[3] = this.categoryService.countCategory();
+        // 统计标签总数
+        siteBasicStatistics[4] = this.tagService.countTag();
+        // 运行天数
+        siteBasicStatistics[5] = SiteInfoHelper.getSiteRunDays();
+        model.addAttribute("siteBasicStatistics", siteBasicStatistics);
+        // 获取热门评论文章
+        List<Article> mostCommentArticleList = this.articleService.getMostCommentArticleList();
+        model.addAttribute("mostCommentArticleList", mostCommentArticleList);
+
         return "articleDetail";
     }
 
@@ -67,7 +91,7 @@ public class ArticleController {
      */
     @RequestMapping("/like/{articleId}")
     @ResponseBody
-    public String increaseArticleLikeCountById(@PathVariable("articleId") Integer id) throws JsonProcessingException {
+    public String increaseArticleLikeCountById(@PathVariable("articleId") Long id) throws JsonProcessingException {
         Integer curLikeCnt = this.articleService.getArticleLikeCountById(id);
         ResultInfo resultInfo = new ResultInfo();
         if(curLikeCnt != null) {
@@ -83,7 +107,7 @@ public class ArticleController {
 
     @RequestMapping("/view/{articleId}")
     @ResponseBody
-    public String increaseArticleViewCountById(@PathVariable("articleId") Integer id) throws JsonProcessingException {
+    public String increaseArticleViewCountById(@PathVariable("articleId") Long id) throws JsonProcessingException {
         Integer curViewCnt = this.articleService.getArticleViewCountById(id);
         ResultInfo resultInfo = new ResultInfo();
         if(curViewCnt != null) {

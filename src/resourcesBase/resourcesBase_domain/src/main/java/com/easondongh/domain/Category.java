@@ -7,12 +7,12 @@ import java.io.Serializable;
 @Data
 public class Category implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     /**
      * 父节点id，0表示无父节点
      */
-    private Integer pid;
+    private Long pid;
 
     private String categoryName;
 
