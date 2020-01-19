@@ -21,6 +21,7 @@ public interface ArticleDao {
      */
     @Select("select * from article where status = 1 " +
             "ORDER BY articleOrder DESC, articleCommentCount DESC, articleLikeCount DESC, articleCreateTime DESC")
+    @ResultMap(value = "articleMap")
     List<Article> listAll();
 
     /**
@@ -110,6 +111,14 @@ public interface ArticleDao {
      */
     @Update("update article set articleViewCount=#{curViewCnt} where id=#{id}")
     int updateArticleViewCountById(@Param("id") Long id, @Param("curViewCnt") Integer curViewCnt);
+
+    /**
+     * 递增文章评论数
+     * @param id
+     * @return
+     */
+    @Update("update article set articleCommentCount=articleCommentCount+1 where id=#{id}")
+    int incrementArticleCommentCountById(Long id);
 
     /**
      * 统计文章总数

@@ -33,6 +33,23 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugin/font-awesome/css/font-awesome.min.css">
 
     <rapid:block name="header-style"></rapid:block>
+
+    <style>
+        /*::-webkit-scrollbar {*/
+            /*width: 6px;*/
+            /*height: 6px;*/
+            /*background-color: #eee;*/
+        /*}*/
+
+        /*::-webkit-scrollbar-thumb {*/
+            /*background-color: #3798e8;*/
+        /*}*/
+
+        /*::-webkit-scrollbar-track {*/
+            /*background-color: #eee;*/
+        /*}*/
+
+    </style>
 </head>
 <body>
 <div id="page" class="hfeed site" style="transform: none;">
@@ -56,6 +73,15 @@
 <script src="${pageContext.request.contextPath}/static/plugin/layui/layui.all.js"></script>
 
 <rapid:block name="footer-script"></rapid:block>
+
+<ul id="scroll">
+    <li>
+        <a class="scroll-h" title="返回顶部"><i class="fa fa-chevron-up" aria-hidden="true" style="color: #696969"></i></a>
+    </li>
+    <li>
+        <a class="scroll-b" title="转到底部"><i class="fa fa-chevron-down" aria-hidden="true" style="color: #696969"></i></a>
+    </li>
+</ul>
 
 </body>
 </html>

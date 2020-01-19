@@ -60,30 +60,32 @@
                                     <fmt:formatNumber value="${interval/1000/60/60/24}" pattern="#0" var="days"/>
                                     <c:if test="${days <= 7}">NEW</c:if>
                         </span>
-                        <div style="float: right">
-                            <span class="entry-meta">
-                                <span class="date">
-                                    <fmt:formatDate value="${a.articleCreateTime}" pattern="yyyy年MM月dd日"/>&nbsp;&nbsp;
+                        <span style="float: left">
+                            <a href="">
+                                <img src="/image/${a.user.avatarId}"
+                                     style="display: inline;width: 24px;height: 24px;border-radius: 24px;vertical-align:middle;"></a>
+                                &nbsp;<a href="">${a.user.nickName}</a>
+                        </span>
+                        <span class="entry-meta" style="float: right">
+                            <span class="likeCount">
+                                 <a href="javascript:;" data-action="ding" data-id="1" title="点赞"
+                                    class="favorite" onclick="increaseLikeCount(${a.id})">
+                                    <i class="fa fa-thumbs-up"></i>
+                                    <i class="likeCount" id="likeCount-${a.id}">${a.articleLikeCount}</i>
+                                </a>
                                 </span>
-                                <span class="views">
-                                    <i class="fa fa-eye"></i>
-                                        ${a.articleViewCount} views
+                                <span class="viewsCount">&nbsp;&nbsp;
+                                    <a href="/article/${a.id}" target="_blank"><i
+                                            class="fa fa-eye"></i>&nbsp;${a.articleViewCount}</a>
                                 </span>
-                                <span class="comment">&nbsp;&nbsp;
-                                    <a href="/article/${a.id}#comments" rel="external nofollow">
-                                      <i class="fa fa-comment-o"></i>
-                                        <c:choose>
-                                            <c:when test="${a.articleCommentCount == 0}">
-                                                发表评论
-                                            </c:when>
-                                            <c:otherwise>
-                                                ${a.articleCommentCount}
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </a>
-                                </span>
+                                <c:if test="${a.articleCommentCount > 0}">
+                                    <span class="commentCount">&nbsp;&nbsp;
+                                         <a href="/article/${a.id}#comments" rel="external nofollow" target="_blank">
+                                             <i class="fa fa-comment-o"></i>&nbsp;${a.articleCommentCount}
+                                         </a>
+                                    </span>
+                                </c:if>
                             </span>
-                        </div>
                         <div class="clear"></div>
                     </div><!-- .entry-content -->
                 </article>

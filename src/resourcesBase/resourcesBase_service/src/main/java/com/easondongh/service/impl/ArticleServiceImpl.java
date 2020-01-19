@@ -78,6 +78,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public boolean incrementArticleCommentCountById(Long id) {
+        return this.articleDao.incrementArticleCommentCountById(id) > 0;
+    }
+
+    @Override
     public int countArticles() {
         return this.articleDao.countArticles();
     }

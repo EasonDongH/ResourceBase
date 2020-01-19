@@ -2,6 +2,7 @@ package com.easondongh.controller;
 
 import com.easondongh.domain.Comment;
 import com.easondongh.domain.ResultInfo;
+import com.easondongh.service.ArticleService;
 import com.easondongh.service.CommentService;
 import com.easondongh.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,6 +30,8 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private ArticleService articleService;
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -36,6 +39,7 @@ public class CommentController {
         HttpSession session = request.getSession();
         if(session.getAttribute(LOGIN_USER) == null) {
             comment.setUserId(0L);
+            comment.setAvatarId(0L);
         }
         ResultInfo resultInfo = new ResultInfo();
         if(commentService.addComment(comment)) {

@@ -88,6 +88,13 @@ public interface ArticleService {
     boolean updateArticleViewCountById(Long id, Integer curViewCnt);
 
     /**
+     * 递增文章评论数
+     * @param id
+     * @return
+     */
+    boolean incrementArticleCommentCountById(Long id);
+
+    /**
      * 统计文章总数
      * @return
      */

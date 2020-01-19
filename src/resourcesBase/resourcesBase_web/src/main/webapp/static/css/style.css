@@ -310,7 +310,7 @@ a, button, input {
     font-size: 24px;
     font-size: 2.4rem;
     font-weight: 700;
-    /*padding: 0 0 2px 0;*/
+    padding: 0 0 2px 0;
 }
 
 .site-name {
@@ -365,6 +365,7 @@ a, button, input {
 
 /** 顶部导航 **/
 #top-header {
+    z-index: 1000;
     background: #F5F8F9 !important;
     border-bottom: 1px solid #dedede;
 }
@@ -509,8 +510,16 @@ a, button, input {
     position: fixed;
     background: rgba(255, 255, 255, 0.9);
 }
+
+.box-active{
+    position: fixed;
+    top: 0;
+}
+
 /** 菜单 **/
 #top-menu {
+    position: relative;
+    z-index: 999;
     width: 1080px;
     margin: 0 auto;
     display: table;
@@ -745,7 +754,7 @@ a, button, input {
     height: 100%;
     z-index: 999999;
     width: 60%;
-    overflow-x: hidden;
+    overflow-x: none;
     overflow-y: auto;
     font-size: 14px;
     background: #333;
@@ -1457,10 +1466,8 @@ a, button, input {
 
 /** 文章信息 **/
 .entry-meta {
-    /*position: absolute;*/
     bottom: 14px;
     color: #999;
-    /*left: 240px;*/
 }
 
 .format-aside .entry-meta,
@@ -1553,6 +1560,12 @@ a, button, input {
     display: none;
 }
 
+.load {
+    background: #f4f4f4 url(img/load.gif) no-repeat scroll 50% center;
+    overflow: hidden;
+    display: block;
+    zoom: 1;
+}
 
 /** 图像日志 **/
 .format-img {
@@ -2667,7 +2680,7 @@ img.alignleft {
 }
 
 .widget .textwidget {
-    padding: 18px;
+    padding: 5px;
 }
 
 #advert_widget, .php_text .widget-text {
@@ -2917,6 +2930,7 @@ img.alignleft {
 }
 /** 头像留言 **/
 #message .avatar {
+
     float: left;
     width: 16px;
     height: 16px;
@@ -3454,7 +3468,7 @@ img.alignleft {
     }
 }
 .comment-body {
-    min-height:45px;
+    min-height:30px;
 }
 
 .comment-body:hover .avatar {
@@ -5286,6 +5300,32 @@ li.comments-anchor {
     display: block;
     border: 1px solid #ddd;
 }
+
+/*首页展示*/
+.likeCount a{
+    color: #999;
+}
+
+.likeCount a:hover{
+    color: #009688;
+}
+
+.viewsCount a:hover{
+    color: #009688;
+}
+
+.viewsCount a{
+    color: #999;
+}
+
+.commentCount a{
+    color: #999;
+}
+
+.commentCount a:hover{
+    color: #009688;
+}
+/*首页展示 end*/
 
 .share-s a {
     background: #fff;

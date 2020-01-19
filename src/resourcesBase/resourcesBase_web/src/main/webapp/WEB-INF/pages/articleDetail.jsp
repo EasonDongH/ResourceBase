@@ -140,7 +140,7 @@
                             </li>
                             <li class="views">
                                 <i class="fa fa-eye"></i>
-                                <span class="articleViewCount">${article.articleViewCount}</span>views
+                                <span class="articleViewCount">${article.articleViewCount}</span>&nbsp;views
                             </li>
                             <li class="r-hide">
                                 <a href="javascript:pr()" title="侧边栏">
@@ -280,7 +280,7 @@
                                 <div id="div-comment-${c.id}" class="comment-body">
                                     <div class="comment-author vcard">
                                         <img class="avatar" src="/image/${c.avatarId}" alt="avatar"
-                                             style="display: block;">
+                                             style="display: block;border-radius:50px;">
                                         <strong>${c.nickName}</strong>
                                         <c:if test="${c.userId == article.userId}">
                                             <i class="fa fa-black-tie" style="color: #c40000;"></i>
@@ -336,7 +336,7 @@
                                                 <div id="div-comment-${c.id}" class="comment-body">
                                                     <div class="comment-author vcard">
                                                         <img class="avatar" src="/image/${c.avatarId}" alt="avatar"
-                                                             style="display: block;">
+                                                             style="display: block;border-radius:50px;">
                                                         <strong>${c2.nickName} </strong>
                                                         <c:if test="${c2.pid!=0}">
                                                             &nbsp;回复&nbsp;<span class="at">${c2.pname}</span>
