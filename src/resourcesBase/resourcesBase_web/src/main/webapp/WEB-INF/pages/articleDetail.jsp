@@ -249,12 +249,12 @@
                             <input type="hidden" name="pname" value="">
                             <c:if test="${sessionScope.user == null}">
                                 <p class="comment-form-author">
-                                    <label for="author_name">昵称</label>
-                                    <input type="text" name="nickName" id="author_name" tabindex="2">
+                                    <label for="nickName">昵称</label>
+                                    <input type="text" name="nickName" id="nickName" tabindex="2">
                                 </p>
                                 <p class="comment-form-email">
-                                    <label for="author_email">联系方式</label>
-                                    <input type="email" name="commentAuthorEmail" id="author_email" tabindex="3">
+                                    <label for="commentAuthorEmail">联系方式</label>
+                                    <input type="email" name="commentAuthorEmail" id="commentAuthorEmail" tabindex="3">
                                 </p>
                             </c:if>
                         </div>
@@ -299,10 +299,11 @@
                                                                    value="${c.childCommentCount}"/>
                                                         </span>
                                                     </c:if>
-                                                     <span class="reply">
-                                                            <a rel="nofollow" class="comment-reply-link"
-                                                               href="#respond">回复</a>
+                                                     <span id="replyspan-${c.id}" class="reply">
+                                                            <a id="showreply-${c.id}" rel="nofollow" class="comment-reply-link" href="#respond"
+                                                               >回复</a>
                                                      </span>
+
                                                 </div>
                                                 <br>
                                                 <fmt:formatDate value="${c.createTime}"
@@ -322,6 +323,9 @@
                                             </c:if>
                                                 ${c.content}
                                         </p>
+                                        <div>
+                                            <input type="text" style="display: none" id="replayInput-${c.id}" />
+                                        </div>
                                     </div>
                                 </div>
                                 <ul class="children" style="display: none;" id="reply-list-${c.id}">

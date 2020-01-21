@@ -374,6 +374,17 @@ function readreply(id) {
     $("#reply-list-"+id).toggle();
 }
 
+function togglereplayinput(id) {
+    if ($("#replayInput-"+id).css("display") == "none"){// 折叠->展开
+        $("#showreply-"+id).text("取消回复");
+        $("#replayInput-"+id).focus();
+        $("#replayInput-"+id).select();
+    } else {// 展开->折叠
+        $("#showreply-"+id).text("回复");
+    }
+    $("#replayInput-"+id).toggle();
+}
+
 //文章浏览量+1
 function increaseViewCount(articleId) {
         $.ajax({
