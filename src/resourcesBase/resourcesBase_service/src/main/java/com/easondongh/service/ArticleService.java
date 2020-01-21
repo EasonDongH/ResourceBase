@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author EasonDongH
@@ -16,6 +17,18 @@ public interface ArticleService {
      * @return
      */
     List<Article> listAll();
+
+    /**
+     * 列出status=1的所有文章的id、articleTitle
+     * @return
+     */
+    List<Article> listIdAndTitle();
+
+    /**
+     * 仅查出info中的字段（文章状态=1）
+     * @return
+     */
+    List<Article> listPartInfo(Set<String> info);
 
     /**
      * 根据条件查询

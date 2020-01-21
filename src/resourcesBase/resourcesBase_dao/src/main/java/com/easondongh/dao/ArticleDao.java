@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author EasonDongH
@@ -25,6 +26,23 @@ public interface ArticleDao {
     List<Article> listAll();
 
     /**
+     * 列出status=1的所有文章的id、articleTitle
+     * @return
+     */
+    @Select("select id,articleTitle from article where status = 1 " +
+            "ORDER BY articleOrder DESC, articleCommentCount DESC, articleLikeCount DESC, articleCreateTime DESC")
+    List<Article> listIdAndTitle();
+
+    /**
+     * 查出id、articleTitle、articleCreateTime（文章状态=1）
+     * @return
+     */
+    @Select("select id,articleTitle,articleCreateTime from article where status = 1 " +
+            "ORDER BY articleCreateTime DESC")
+    @ResultMap(value = "articleMap")
+    List<Article> listPartInfo();
+
+    /**
      * 根据条件查询
      * @param params
      * @return
@@ -39,7 +57,7 @@ public interface ArticleDao {
      * @param id
      * @return
      */
-    @Select("select * from article where id = #{id} and status = 1")
+    @Select("select * from article where id = #{id}")
     @Results(id = "articleMap", value = {
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "userId", column = "userId"),

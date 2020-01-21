@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author EasonDongH
@@ -23,6 +24,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> listAll() {
         return this.articleDao.listAll();
+    }
+
+    @Override
+    public List<Article> listIdAndTitle() {
+        return articleDao.listIdAndTitle();
+    }
+
+    @Override
+    public List<Article> listPartInfo(Set<String> info) {
+        return articleDao.listPartInfo();
     }
 
     @Override

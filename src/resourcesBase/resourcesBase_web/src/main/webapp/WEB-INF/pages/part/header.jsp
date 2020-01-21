@@ -28,7 +28,7 @@
                         <c:forEach items="${menuList}" var="m">
                             <li class="menu-item">
                                 <c:if test="${m.menuLevel==1}">
-                                    <a href="${m.menuUrl}">
+                                    <a href="${m.menuUrl}" target="_blank">
                                         <i class="${m.menuIcon}"></i>
                                         <span class="font-text">${m.menuName}&nbsp;</span>&nbsp;
                                     </a>

@@ -2,6 +2,7 @@ package com.easondongh.controller;
 
 import com.easondongh.domain.Comment;
 import com.easondongh.domain.ResultInfo;
+import com.easondongh.domain.User;
 import com.easondongh.service.ArticleService;
 import com.easondongh.service.CommentService;
 import com.easondongh.util.JsonUtil;
@@ -37,9 +38,13 @@ public class CommentController {
     @ResponseBody
     public String addComment(Comment comment, HttpServletRequest request) throws JsonProcessingException {
         HttpSession session = request.getSession();
-        if(session.getAttribute(LOGIN_USER) == null) {
-            comment.setUserId(0L);
-            comment.setAvatarId(0L);
+        Object obj = session.getAttribute(LOGIN_USER);
+        if(obj != null) {
+            User curUser = (User)obj;
+            if(curUser != null) {
+                comment.setUserId(curUser.getId());
+                comment.setNickName(curUser.getNickName());
+            }
         }
         ResultInfo resultInfo = new ResultInfo();
         if(commentService.addComment(comment)) {

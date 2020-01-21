@@ -460,11 +460,11 @@ $("#applyLinkForm").submit(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: '/applyLinkSubmit',
+        url: '/site/applyLinkSubmit',
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         data: $("#applyLinkForm").serialize(),
-        success: function () {
-            alert("申请成功，请耐心等待审核！");
+        success: function (data) {
+            alert(data.data);
         }
     })
 })

@@ -4,6 +4,7 @@ import org.apache.ibatis.jdbc.SQL;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 生成article相关的动态SQL语句
@@ -39,6 +40,22 @@ public class ArticleDynaSqlProvider {
                     }
                 }
                 ORDER_BY("articleOrder DESC, articleCommentCount DESC, articleLikeCount DESC, articleCreateTime DESC");
+            }
+        }.toString();
+    }
+
+    public String selectPartInfo(Set<String> info) {
+        return new SQL(){
+            {
+                if(info == null) {
+                    SELECT("*");
+                } else {
+                    for (String s : info) {
+                        SELECT(s);
+                    }
+                }
+                FROM("article");
+                WHERE("status = 1");
             }
         }.toString();
     }

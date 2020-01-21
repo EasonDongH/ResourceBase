@@ -1845,7 +1845,7 @@ a, button, input {
 
 .single-content ul li,
 .single-content ol li {
-    margin: 0 35px 0 50px;
+    margin: 0 35px 0 20px;
     line-height: 190%;
 }
 
@@ -3397,7 +3397,7 @@ img.alignleft {
     float: left;
     width: 64px;
     height: 64px;
-    margin: 7px 10px 0 0;
+    margin: 0px 10px 0 0;
     padding: 3px;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -7589,3 +7589,33 @@ body {
     /*font-family: Courier New;*/
     /*font-size: 12px;*/
 /*}*/
+
+.year {
+    font-size: 16px;
+    margin: 10px -21px 10px -21px;
+    padding: 0 20px;
+    border-bottom: 1px solid #ebebeb;
+    border-left: 5px solid #0088cc;
+}
+
+.mon {
+    color: #000;
+    line-height: 30px;
+    margin: 5px 0 5px 5px;
+    cursor: pointer;
+}
+
+.post_list li {
+    line-height: 30px;
+    text-indent: 2em;
+}
+
+.post_list {
+    color: #999;
+    margin: 0 0 10px 0;
+}
+
+.mon-num {
+    color: #999;
+    margin: 0 0 0 10px;
+}

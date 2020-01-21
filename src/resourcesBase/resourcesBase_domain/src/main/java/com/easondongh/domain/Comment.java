@@ -12,27 +12,27 @@ import java.util.Date;
 @Data
 public class Comment implements Serializable {
 
-    private Long id;
+    private Long id = 0L;
 
     /**
      * 该条评论的父节点（为0表示没有父节点）
      */
-    private Long pid;
+    private Long pid = 0L;
 
     /**
      * 文章id
      */
-    private Long aid;
+    private Long aid = 0L;
 
     /**
      * 为0时表示为游客
      */
-    private Long userId;
+    private Long userId = 0L;
 
     /**
      * 头像id
      */
-    private Long avatarId;
+    private Long avatarId = 0L;
 
     /**
      * 游客的nickName为"游客"
@@ -65,7 +65,7 @@ public class Comment implements Serializable {
     /**
      * 该评论下的评论数量
      */
-    private int childCommentCount;
+    private Integer childCommentCount = 0;
 
     private Date createTime;
 
@@ -74,5 +74,5 @@ public class Comment implements Serializable {
     /**
      * 0：删除  1：新建  2：已读
      */
-    private int status;
+    private Integer status = 1;
 }

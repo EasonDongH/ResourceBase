@@ -1,5 +1,6 @@
 import com.easondongh.dao.ArticleDao;
 import com.easondongh.domain.Article;
+import com.easondongh.domain.ArticleGroup;
 import com.easondongh.domain.Category;
 import com.easondongh.domain.Options;
 import com.easondongh.service.CategoryService;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
@@ -64,5 +66,12 @@ public class MybatisTest {
 
             this.articleDao.addArticle(article);
         }
+    }
+
+    @Test
+    public void testArticleGroup() {
+        List<Article> articleList = this.articleDao.listPartInfo();
+        ArticleGroup articleGroup = new ArticleGroup(articleList);
+        Map<String, Map<String, List<Article>>> group = articleGroup.getArticleGroup();
     }
 }

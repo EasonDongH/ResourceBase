@@ -75,8 +75,8 @@
                                 </a>
                                 </span>
                                 <span class="viewsCount">&nbsp;&nbsp;
-                                    <a href="/article/${a.id}" target="_blank"><i
-                                            class="fa fa-eye"></i>&nbsp;${a.articleViewCount}</a>
+                                    <a href="/article/${a.id}" target="_blank">
+                                        <i class="fa fa-eye"></i>&nbsp;${a.articleViewCount}</a>
                                 </span>
                                 <c:if test="${a.articleCommentCount > 0}">
                                     <span class="commentCount">&nbsp;&nbsp;
